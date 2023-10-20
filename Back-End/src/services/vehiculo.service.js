@@ -5,8 +5,8 @@ const getVehiculos = async () => {
   return data
 }
 
-const getVehiculo = async (id) => {
-  const [data] = await pool.query('SELECT * FROM vehiculo WHERE id = ?', [id])
+const getVehiculo = async (placa) => {
+  const [data] = await pool.query('SELECT * FROM vehiculo WHERE placa = ?', [placa])
   return data
 }
 
@@ -15,8 +15,8 @@ const createVehiculo = async (vehiculo) => {
   return data
 }
 
-const editVehiculo = async (id, vehiculo) => {
-  const [data] = await pool.query('UPDATE vehiculo SET ? WHERE id = ?', [vehiculo, id])
+const editVehiculo = async (placa, vehiculo) => {
+  const [data] = await pool.query('UPDATE vehiculo SET ? WHERE placa = ?', [vehiculo, placa])
   return data
 }
 

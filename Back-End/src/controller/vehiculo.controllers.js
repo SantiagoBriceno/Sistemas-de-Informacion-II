@@ -24,7 +24,7 @@ export const getVehiculos = async (req, res) => {
 
 export const getVehiculo = async (req, res) => {
   try {
-    const vehiculo = await service.getVehiculo(req.params.id)
+    const vehiculo = await service.getVehiculo(req.params.placa)
     if (vehiculo) {
       res.send({
         status: 200,
@@ -68,7 +68,7 @@ export const createVehiculo = async (req, res) => {
 
 export const editVehiculo = async (req, res) => {
   try {
-    const vehiculo = await service.editVehiculo(req.params.id, req.body)
+    const vehiculo = await service.editVehiculo(req.params.placa, req.body)
     if (vehiculo) {
       res.send({
         status: 200,

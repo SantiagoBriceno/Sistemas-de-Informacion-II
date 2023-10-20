@@ -4,7 +4,7 @@ import service from '../service/balance.service.js'
 // Llega en el req.body el id del vehiculo y las fechas de inicio y fin de los gastos
 export const getBalance = async (req, res) => {
   try {
-    const [data] = await service.getBalance(req.body.id, req.body.fechaInicio, req.body.fechaFin)
+    const [data] = await service.getBalance(req.body.placa, req.body.fechaInicio, req.body.fechaFin)
     if (data) {
       res.send({
         status: 200,

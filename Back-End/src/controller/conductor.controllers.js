@@ -24,7 +24,7 @@ export const getConductores = async (req, res) => {
 
 export const getConductor = async (req, res) => {
   try {
-    const conductor = await service.getConductor(req.params.id)
+    const conductor = await service.getConductor(req.params.cedula)
     if (conductor) {
       res.send({
         status: 200,
@@ -68,7 +68,7 @@ export const createConductor = async (req, res) => {
 
 export const editConductor = async (req, res) => {
   try {
-    const conductor = await service.editConductor(req.params.id, req.body)
+    const conductor = await service.editConductor(req.params.cedula, req.body)
     if (conductor) {
       res.send({
         status: 200,

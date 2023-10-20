@@ -1,22 +1,16 @@
-[Endpoint Name]
+## Conductor
 
-[Description of the endpoint]
+### Todas los endpoint de los conductores
 
-Endpoint:
-[HTTP Method] [Endpoint URL]
-
-Request Parameters:
-- [Parameter 1]: [Description]
-- [Parameter 2]: [Description]
-- ...
-
-Request Body:
-[Description of the request body]
+1.- getConductores
+[GET] [/api/conductores]
 
 Response:
-- [HTTP Status Code 1]: [Description]
-- [HTTP Status Code 2]: [Description]
-- ...
+EXIT
+- [200]: "{data: [Conductores]}"
+
+2.- getConductor
+[GET] [api/conductor/{id}]
 
 Response Body:
 [Description of the response body]

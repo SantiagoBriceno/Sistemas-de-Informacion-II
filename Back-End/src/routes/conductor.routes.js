@@ -7,11 +7,11 @@ const router = Router()
 router.get('/', getConductores)
 
 // RUTA PARA OBTENER UN CHOFER DE LA BASE DE DATOS
-router.get('/:id', getConductor)
+router.get('/:cedula', getConductor)
 
 // RUTA PARA CREAR UN NUEVO CHOFER EN LA BASE DE DATOS
 router.post('/', createConductor)
 
-router.patch('/:id', editConductor)
+router.patch('/:cedula', editConductor)
 
 export default router

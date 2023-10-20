@@ -1,33 +1,33 @@
-CREATE DATABASE IF NOT EXISTS carmanagement;
+-- PRIMER COMANDO
+CREATE DATABASE IF NOT EXISTS carmanager;
 
-
-USE carmanagement;
+USE carmanager;
 
 CREATE TABLE vehiculo(
-  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  placa VARCHAR(50) NOT NULL PRIMARY KEY,
   marca VARCHAR(50) NOT NULL,
   modelo VARCHAR(50) NOT NULL,
   capacidad INT NOT NULL,
   disponibilidad BOOLEAN NOT NULL,
   aire BOOLEAN NOT NULL,
   viajesRealizados INT NOT NULL,
-  idConductor INT NOT NULL
+  cedulaConductor VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE conductor(
-  id INT NOT NULL AUTO_INCREMENT,
+  cedula VARCHAR(50) NOT NULL,
   nombre VARCHAR(50) NOT NULL,
   edad INT NOT NULL,
   telefono VARCHAR(50) NOT NULL,
   disponibilidad BOOLEAN NOT NULL,
   ganancia FLOAT(50, 2) NOT NULL,
   viajesRealizados INT NOT NULL,
-  PRIMARY KEY (id)
+  PRIMARY KEY (cedula)
 );
 
 CREATE TABLE viajes(
   id INT NOT NULL AUTO_INCREMENT,
-  idVehiculo INT NOT NULL,
+  placaVehiculo VARCHAR(50) NOT NULL,
   fechaInicio DATE NOT NULL,
   fechaFin DATE NOT NULL,
   ubicacion VARCHAR(50) NOT NULL,
@@ -38,61 +38,45 @@ CREATE TABLE viajes(
 
 CREATE TABLE gasto(
   id INT NOT NULL AUTO_INCREMENT,
-  idVehiculo INT NOT NULL,
-  fechaRealizacion DATE NOT NULL,
+  placaVehiculo VARCHAR(50) NOT NULL,
+  fecha DATE NOT NULL,
   descripcion VARCHAR(50) NOT NULL,
   PRIMARY KEY (id)
 );
 
-INSERT INTO vehiculo (id, marca, modelo, capacidad, disponibilidad, aire,viajesRealizados, idConductor)
-VALUES 
-  (1, 'Toyota', 'Coaster', 30, true, true, 0, 1),
-  (2, 'Mercedes-Benz', 'Sprinter', 20, true, true, 0, 2),
-  (3, 'Volvo', 'B7R', 40, true, true, 0, 3),
-  (4, 'Scania', 'K360', 50, true, true, 0, 4),
-  (5, 'MAN', "Lion's Coach", 60, true, true, 0, 5),
-  (6, 'Ford', 'Transit', 15, true, false, 0, 6),
-  (7, 'Chevrolet', 'Express', 25, true, false, 0, 7),
-  (8, 'Nissan', 'NV350', 18, true, true, 0, 8),
-  (9, 'Renault', 'Master', 30, true, true, 0, 9),
-  (10,'Volkswagen', 'Transporter', 20, true, false, 0, 10);
+-- SEGUNDO COMANDO
 
-INSERT INTO conductor (nombre, edad, telefono, disponibilidad,ganancia, viajesRealizados)
-VALUES 
-  ('Juan Perez', 35, '0412-1234567', true, 0, 0),
-  ('Maria Rodriguez', 28, '0414-7654321', true, 0, 0),
-  ('Pedro Gomez', 42, '0424-9876543', true, 0, 0),
-  ('Ana Garcia', 29, '0416-5555555', true, 0, 0),
-  ('Luis Hernandez', 50, '0426-1111111', true, 0, 0),
-  ('Carlos Gonzalez', 38, '0412-2222222', true, 0, 0),
-  ('Marta Sanchez', 45, '0414-3333333', true, 0, 0),
-  ('Josefina Ramirez', 31, '0424-4444444', true, 0, 0),
-  ('Rafaela Torres', 27, '0416-7777777', true, 0, 0),
-  ('Jorge Fernandez', 55, '0426-8888888', true, 0, 0);
+USE carmanager;
 
-INSERT INTO viajes (idVehiculo, fechaInicio, fechaFin, ubicacion,distancia, costo)
-VALUES 
-  (1, '2021-10-01', '2021-10-02', 'Caracas', 100, 500),
-  (2, '2021-10-03', '2021-10-04', 'Valencia', 200, 1000),
-  (3, '2021-10-05', '2021-10-06', 'Maracaibo', 300, 1500),
-  (4, '2021-10-07', '2021-10-08', 'Barquisimeto', 400, 2000),
-  (5, '2021-10-09', '2021-10-10', 'Maturin', 500, 2500),
-  (1, '2021-10-11', '2021-10-12', 'Puerto Ordaz', 600, 3000),
-  (2, '2021-10-13', '2021-10-14', 'San Cristobal', 700, 3500),
-  (3, '2021-10-15', '2021-10-16', 'Maracay', 800, 4000),
-  (4, '2021-10-17', '2021-10-18', 'Barcelona', 900, 4500),
-  (5, '2021-10-19', '2021-10-20', 'Ciudad Bolivar', 1000, 5000);
+-- Insert 5 records for vehiculo table
+INSERT INTO vehiculo (placa, marca, modelo, capacidad, disponibilidad, aire, viajesRealizados, cedulaConductor) VALUES
+('ABC123', 'Mercedes-Benz', 'O500RSD', 50, true, true, 10, '123456789'),
+('DEF456', 'Volvo', 'B12M', 45, true, true, 5, '987654321'),
+('GHI789', 'Scania', 'K360IB', 55, true, true, 15, '456789123'),
+('JKL012', 'MAN', "Lion's Coach", 60, true, true, 20, '321654987'),
+('MNO345', 'Irizar', 'i6S', 48, true, true, 25, '789123456');
 
-INSERT INTO gasto (idVehiculo, fechaRealizacion, descripcion)
-VALUES 
-  (1, '2021-10-01', 'Cambio de aceite'),
-  (2, '2021-10-02', 'Cambio de frenos'),
-  (3, '2021-10-03', 'Cambio de llantas'),
-  (4, '2021-10-04', 'Cambio de bateria'),
-  (5, '2021-10-05', 'Cambio de amortiguadores'),
-  (1, '2021-10-06', 'Cambio de filtro de aire'),
-  (2, '2021-10-07', 'Cambio de filtro de aceite'),
-  (3, '2021-10-08', 'Cambio de filtro de gasolina'),
-  (4, '2021-10-09', 'Cambio de correa de distribucion'),
-  (5, '2021-10-10', 'Cambio de bujias');
+-- Insert 5 records for conductor table
+INSERT INTO conductor (cedula, nombre, edad, telefono, disponibilidad, ganancia, viajesRealizados) VALUES
+('123456789', 'Juan Perez', 35, '04121234567', true, 100.50, 10),
+('987654321', 'Maria Rodriguez', 28, '04241234567', true, 80.25, 5),
+('456789123', 'Pedro Gomez', 45, '04161234567', true, 150.75, 15),
+('321654987', 'Ana Martinez', 40, '04221234567', true, 120.00, 20),
+('789123456', 'Luisa Hernandez', 50, '04141234567', true, 200.00, 25);
+
+-- Insert 5 records for viajes table
+INSERT INTO viajes (placaVehiculo, fechaInicio, fechaFin, ubicacion, distancia, costo) VALUES
+('ABC123', '2021-10-01', '2021-10-02', 'Caracas', 100.50, 500.00),
+('DEF456', '2021-10-03', '2021-10-04', 'Maracay', 80.25, 400.00),
+('GHI789', '2021-10-05', '2021-10-06', 'Valencia', 150.75, 750.00),
+('JKL012', '2021-10-07', '2021-10-08', 'Barquisimeto', 120.00, 600.00),
+('MNO345', '2021-10-09', '2021-10-10', 'Maracaibo', 200.00, 1000.00);
+
+-- Insert 5 records for gasto table
+INSERT INTO gasto (placaVehiculo, fecha, descripcion) VALUES
+('ABC123', '2021-10-01', 'Mantenimiento preventivo'),
+('DEF456', '2021-10-03', 'Cambio de aceite'),
+('GHI789', '2021-10-05', 'Reparación de frenos'),
+('JKL012', '2021-10-07', 'Cambio de neumáticos'),
+('MNO345', '2021-10-09', 'Reparación de motor');
 
