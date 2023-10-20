@@ -75,9 +75,9 @@ INSERT INTO viajes (placaVehiculo, fechaInicio, fechaFin, ubicacion, distancia, 
 
 -- Insert 5 records for gasto table
 INSERT INTO gasto (placaVehiculo, fecha, descripcion) VALUES
-('ABC123', '2021-10-01', 'Mantenimiento preventivo'),
-('DEF456', '2021-10-03', 'Cambio de aceite'),
-('GHI789', '2021-10-05', 'Reparación de frenos'),
-('JKL012', '2021-10-07', 'Cambio de neumáticos'),
-('MNO345', '2021-10-09', 'Reparación de motor');
+('ABC123', '2021-10-01', 'Mantenimiento preventivo', 200),
+('DEF456', '2021-10-03', 'Cambio de aceite', 300),
+('GHI789', '2021-10-05', 'Reparación de frenos', 400),
+('JKL012', '2021-10-07', 'Cambio de neumáticos', 1200),
+('MNO345', '2021-10-09', 'Reparación de motor', 2000);
 
