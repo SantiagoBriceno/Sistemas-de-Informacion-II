@@ -6,10 +6,7 @@ export const getBalance = async (req, res) => {
   try {
     console.log('fechaInicio', req.body.fechaInicio, 'fechaFin', req.body.fechaFin)
     const data = await service.getBalance(req.body.placaVehiculo, req.body.fechaInicio, req.body.fechaFin)
-    data.forEach(element => {
-      element.fecha = element.fecha.toISOString().slice(0, 10)
-    }
-    )
+    console.log(data)
     if (data) {
       res.send({
         status: 200,
@@ -22,6 +19,7 @@ export const getBalance = async (req, res) => {
       })
     }
   } catch (e) {
+    console.log(e)
     res.status(500).send({
       status: 'ERROR',
       message: 'OPS! ERROR AL OBTENER LOS GASTOS'

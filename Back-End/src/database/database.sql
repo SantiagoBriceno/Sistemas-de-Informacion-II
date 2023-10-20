@@ -41,6 +41,7 @@ CREATE TABLE gasto(
   placaVehiculo VARCHAR(50) NOT NULL,
   fecha DATE NOT NULL,
   descripcion VARCHAR(50) NOT NULL,
+  costo FLOAT(50, 2) NOT NULL,
   PRIMARY KEY (id)
 );
 
