@@ -43,3 +43,47 @@ export const getViaje = async (req, res) => {
     })
   }
 }
+
+export const createViaje = async (req, res) => {
+  try {
+    const viaje = await service.createViaje(req.body)
+    if (viaje) {
+      res.send({
+        status: 200,
+        data: viaje
+      })
+    } else {
+      res.status(404).send({
+        status: 404,
+        message: 'No se pudo crear el viaje'
+      })
+    }
+  } catch (e) {
+    res.status(500).send({
+      status: 'ERROR',
+      message: 'OPS! ERROR AL CREAR EL VIAJE'
+    })
+  }
+}
+
+export const editViaje = async (req, res) => {
+  try {
+    const viaje = await service.editViaje(req.params.id, req.body)
+    if (viaje) {
+      res.send({
+        status: 200,
+        data: viaje
+      })
+    } else {
+      res.status(404).send({
+        status: 404,
+        message: 'No se pudo editar el viaje'
+      })
+    }
+  } catch (e) {
+    res.status(500).send({
+      status: 'ERROR',
+      message: 'OPS! ERROR AL EDITAR EL VIAJE'
+    })
+  }
+}

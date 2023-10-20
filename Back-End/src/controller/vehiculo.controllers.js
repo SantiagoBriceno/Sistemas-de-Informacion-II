@@ -43,3 +43,47 @@ export const getVehiculo = async (req, res) => {
     })
   }
 }
+
+export const createVehiculo = async (req, res) => {
+  try {
+    const vehiculo = await service.createVehiculo(req.body)
+    if (vehiculo) {
+      res.send({
+        status: 200,
+        data: vehiculo
+      })
+    } else {
+      res.status(404).send({
+        status: 404,
+        message: 'No se pudo crear el vehiculo'
+      })
+    }
+  } catch (e) {
+    res.status(500).send({
+      status: 'ERROR',
+      message: 'OPS! ERROR AL CREAR EL VEHICULO'
+    })
+  }
+}
+
+export const editVehiculo = async (req, res) => {
+  try {
+    const vehiculo = await service.editVehiculo(req.params.id, req.body)
+    if (vehiculo) {
+      res.send({
+        status: 200,
+        data: vehiculo
+      })
+    } else {
+      res.status(404).send({
+        status: 404,
+        message: 'No se pudo editar el vehiculo'
+      })
+    }
+  } catch (e) {
+    res.status(500).send({
+      status: 'ERROR',
+      message: 'OPS! ERROR AL EDITAR EL VEHICULO'
+    })
+  }
+}

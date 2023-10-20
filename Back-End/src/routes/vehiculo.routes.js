@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { getVehiculo, getVehiculos } from '../controller/vehiculo.controllers.js'
+import { getVehiculo, getVehiculos, createVehiculo, editVehiculo } from '../controller/vehiculo.controllers.js'
 
 const router = Router()
 
@@ -8,5 +8,11 @@ router.get('/', getVehiculos)
 
 // RUTA PARA OBTENER UN VEHICULO DE LA BASE DE DATOS
 router.get('/:id', getVehiculo)
+
+// RUTA PARA CREAR UN NUEVO VEHICULO EN LA BASE DE DATOS
+router.post('/', createVehiculo)
+
+// RUTA PARA EDITAR UN VEHICULO EN LA BASE DE DATOS
+router.patch('/:id', editVehiculo)
 
 export default router

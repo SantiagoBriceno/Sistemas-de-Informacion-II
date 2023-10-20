@@ -10,7 +10,19 @@ const getConductor = async (id) => {
   return data
 }
 
+const createConductor = async (conductor) => {
+  const [data] = await pool.query('INSERT INTO conductor SET ?', [conductor])
+  return data
+}
+
+const editConductor = async (id, conductor) => {
+  const [data] = await pool.query('UPDATE conductor SET ? WHERE id = ?', [conductor, id])
+  return data
+}
+
 export default {
   getConductores,
-  getConductor
+  getConductor,
+  createConductor,
+  editConductor
 }
