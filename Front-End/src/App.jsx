@@ -1,13 +1,10 @@
-import "./App.css";
-
-function App() {
-	return (
-		<>
-			<div>
-				<h1>HOLA MUNDO</h1>
-			</div>
-		</>
-	);
+import Conductores from './components/tables/conductores'
+function App () {
+  return (
+    <>
+      <Conductores />
+    </>
+  )
 }
 
-export default App;
+export default App
