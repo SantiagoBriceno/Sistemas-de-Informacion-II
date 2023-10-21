@@ -20,9 +20,15 @@ const editVehiculo = async (placa, vehiculo) => {
   return data
 }
 
+const deleteVehiculo = async (placa) => {
+  const [data] = await pool.query('DELETE FROM vehiculo WHERE placa = ?', [placa])
+  return data
+}
+
 export default {
   getVehiculos,
   getVehiculo,
   createVehiculo,
-  editVehiculo
+  editVehiculo,
+  deleteVehiculo
 }

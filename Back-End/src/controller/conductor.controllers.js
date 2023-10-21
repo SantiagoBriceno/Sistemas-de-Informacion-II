@@ -24,7 +24,7 @@ export const getConductores = async (req, res) => {
 
 export const getConductor = async (req, res) => {
   try {
-    const conductor = await service.getConductor(req.params.cedula)
+    const [conductor] = await service.getConductor(req.params.cedula)
     if (conductor) {
       res.send({
         status: 200,
@@ -84,6 +84,28 @@ export const editConductor = async (req, res) => {
     res.status(500).send({
       status: 'ERROR',
       message: 'OPS! ERROR AL EDITAR EL CONDUCTOR'
+    })
+  }
+}
+
+export const deleteConductor = async (req, res) => {
+  try {
+    const conductor = await service.deleteConductor(req.params.cedula)
+    if (conductor) {
+      res.send({
+        status: 200,
+        data: conductor
+      })
+    } else {
+      res.status(404).send({
+        status: 404,
+        message: 'No se pudo eliminar el conductor'
+      })
+    }
+  } catch (e) {
+    res.status(500).send({
+      status: 'ERROR',
+      message: 'OPS! ERROR AL ELIMINAR EL CONDUCTOR'
     })
   }
 }

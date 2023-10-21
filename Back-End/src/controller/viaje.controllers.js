@@ -87,3 +87,25 @@ export const editViaje = async (req, res) => {
     })
   }
 }
+
+export const deleteViaje = async (req, res) => {
+  try {
+    const viaje = await service.deleteViaje(req.params.id)
+    if (viaje) {
+      res.send({
+        status: 200,
+        data: viaje
+      })
+    } else {
+      res.status(404).send({
+        status: 404,
+        message: 'No se pudo eliminar el viaje'
+      })
+    }
+  } catch (e) {
+    res.status(500).send({
+      status: 'ERROR',
+      message: 'OPS! ERROR AL ELIMINAR EL VIAJE'
+    })
+  }
+}

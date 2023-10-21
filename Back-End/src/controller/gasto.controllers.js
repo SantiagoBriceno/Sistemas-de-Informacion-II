@@ -87,3 +87,25 @@ export const editGasto = async (req, res) => {
     })
   }
 }
+
+export const deleteGasto = async (req, res) => {
+  try {
+    const gasto = await service.deleteGasto(req.params.id)
+    if (gasto) {
+      res.send({
+        status: 200,
+        data: gasto
+      })
+    } else {
+      res.status(400).send({
+        status: 400,
+        message: 'No se pudo eliminar el gasto'
+      })
+    }
+  } catch (e) {
+    res.status(500).send({
+      status: 'ERROR',
+      message: 'OPS! ERROR AL ELIMINAR EL GASTO'
+    })
+  }
+}

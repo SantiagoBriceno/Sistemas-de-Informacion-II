@@ -87,3 +87,25 @@ export const editVehiculo = async (req, res) => {
     })
   }
 }
+
+export const deleteVehiculo = async (req, res) => {
+  try {
+    const vehiculo = await service.deleteVehiculo(req.params.placa)
+    if (vehiculo) {
+      res.send({
+        status: 200,
+        data: vehiculo
+      })
+    } else {
+      res.status(404).send({
+        status: 404,
+        message: 'No se pudo eliminar el vehiculo'
+      })
+    }
+  } catch (e) {
+    res.status(500).send({
+      status: 'ERROR',
+      message: 'OPS! ERROR AL ELIMINAR EL VEHICULO'
+    })
+  }
+}

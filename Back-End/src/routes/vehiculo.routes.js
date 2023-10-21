@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { getVehiculo, getVehiculos, createVehiculo, editVehiculo } from '../controller/vehiculo.controllers.js'
+import { getVehiculo, getVehiculos, createVehiculo, editVehiculo, deleteVehiculo } from '../controller/vehiculo.controllers.js'
 
 const router = Router()
 
@@ -14,5 +14,7 @@ router.post('/', createVehiculo)
 
 // RUTA PARA EDITAR UN VEHICULO EN LA BASE DE DATOS
 router.patch('/:id', editVehiculo)
+
+router.delete('/:id', deleteVehiculo)
 
 export default router

@@ -2,22 +2,77 @@
 
 ### Todas los endpoint de los conductores
 
-1.- getConductores
+#### 1.- getConductores
 [GET] [/api/conductores]
 
 Response:
-EXIT
-- [200]: "{data: [Conductores]}"
+SUCCESS: 
+{
+  status: 200,
+  data: [
+    {
+      "cedula": "123456789",
+      "nombre": "Santiago Briceño",
+      "edad": 35,
+      "telefono": "04121234567",
+      "disponibilidad": 1,
+      "ganancia": 100.5,
+      "viajesRealizados": 10
+    },
+    ...
+  ]
+}
 
-2.- getConductor
-[GET] [api/conductor/{id}]
+#### 2.- getConductor
+[GET] [api/conductores/:cedula] -- EXAMPLE: api/conductores/123456789
 
-Response Body:
-[Description of the response body]
+Response:
+SUCCESS: 
+{
+  status: 200,
+  data: 
+    {
+      "cedula": "123456789",
+      "nombre": "Santiago Briceño",
+      "edad": 35,
+      "telefono": "04121234567",
+      "disponibilidad": 1,
+      "ganancia": 100.5,
+      "viajesRealizados": 10
+    }
+}
 
-Example Request:
-[Example of a request to the endpoint]
+#### 3.- createConductor
+[POST] [/api/conductores] 
 
-Example Response:
-[Example of a response from the endpoint]
+SE DEBE ENVIAR ESTOS DATOS EN BODY EN FORMATO JSON
+Request.body:
+{
+  "cedula": "123456789",
+  "nombre": "Santiago Briceño",
+  "edad": 35,
+  "telefono": "04121234567",
+  "disponibilidad": 1,
+  "ganancia": 100.5,
+  "viajesRealizados": 10
+}
+
+#### 4.- editConductor
+[PATCH] [/api/conductores/:cedula] -- EXAMPLE: api/conductores/123456789 
+
+SE DEBE ENVIAR ESTOS LOS DATOS CON EL MISMO NOMBRE QUE EN LA BASE DE DATOS EN BODY EN FORMATO JSON
+
+Request.body:
+{
+  "nombre": "Santiago Briceño",
+  "edad": 35,
+  "telefono": "04121234567",
+  "disponibilidad": 1,
+  "viajesRealizados": 10
+}
+
+#### 5.- deleteConductor
+[DELETE] [/api/conductores/:cedula] -- EXAMPLE: api/conductores/123456789
+
+### Todas los endpoint de vehiculos
 

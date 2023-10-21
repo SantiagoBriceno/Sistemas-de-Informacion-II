@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { getGasto, getGastos, createGasto, editGasto } from '../controller/gasto.controllers.js'
+import { getGasto, getGastos, createGasto, editGasto, deleteGasto } from '../controller/gasto.controllers.js'
 
 const router = Router()
 
@@ -13,4 +13,5 @@ router.post('/', createGasto)
 
 router.patch('/:id', editGasto)
 
+router.delete('/:id', deleteGasto)
 export default router

@@ -20,9 +20,15 @@ const editConductor = async (cedula, conductor) => {
   return data
 }
 
+const deleteConductor = async (cedula) => {
+  const [data] = await pool.query('DELETE FROM conductor WHERE cedula = ?', [cedula])
+  return data
+}
+
 export default {
   getConductores,
   getConductor,
   createConductor,
-  editConductor
+  editConductor,
+  deleteConductor
 }

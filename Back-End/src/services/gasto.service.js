@@ -20,10 +20,16 @@ const editGasto = async (id, gasto) => {
   return data
 }
 
+const deleteGasto = async (id) => {
+  const [data] = await pool.query('DELETE FROM gasto WHERE id = ?', [id])
+  return data
+}
+
 export default {
   getGastos,
   getGasto,
   createGasto,
-  editGasto
+  editGasto,
+  deleteGasto
 
 }
