@@ -3,10 +3,14 @@ import { useConductores } from "../../hooks/useCondoctores";
 import { useSortedEntity } from "../../hooks/useSortedEntity";
 
 function Conductores() {
-	const { conductores } = useConductores();
+	const { conductores, deleteConductor } = useConductores();
 	const { sortedEntity, handleSort, getSortIndicator } =
 		useSortedEntity(conductores);
 	const sortedConductores = sortedEntity;
+
+	const handleDelete = (conductor) => {
+		deleteConductor(conductor.cedula);
+	};
 
 	return (
 		<div className="bg-gray-50 p-4">
@@ -90,7 +94,10 @@ function Conductores() {
 								{conductor.viajesRealizados}
 							</td>
 							<td className="border px-4 py-2 text-center">
-								<button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-4">
+								<button
+									className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-4"
+									onClick={() => handleDelete(conductor)}
+								>
 									Eliminar
 								</button>
 								<button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">

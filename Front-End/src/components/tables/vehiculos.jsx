@@ -1,12 +1,17 @@
 import React from "react";
 import { useVehiculos } from "../../hooks/useVehiculos";
 import { useSortedEntity } from "../../hooks/useSortedEntity";
+
 function Vehiculos() {
-	const { vehiculos } = useVehiculos();
+	const { vehiculos, deleteVehiculo } = useVehiculos();
 	const { sortedEntity, handleSort, getSortIndicator } =
 		useSortedEntity(vehiculos);
 
 	const sortedVehiculos = sortedEntity;
+
+	const handleDelete = (vehiculo) => {
+		deleteVehiculo(vehiculo.placa);
+	};
 
 	return (
 		<div className="bg-gray-50 p-4">
@@ -98,7 +103,10 @@ function Vehiculos() {
 								{vehiculo.cedulaConductor}
 							</td>
 							<td className="border px-4 py-2 text-center">
-								<button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-4">
+								<button
+									className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-4"
+									onClick={() => handleDelete(vehiculo)}
+								>
 									Eliminar
 								</button>
 								<button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
