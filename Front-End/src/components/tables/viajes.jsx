@@ -1,63 +1,12 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+import { useSortedEntity } from '../../hooks/useSortedEntity'
+import { useViajes } from '../../hooks/useViajes'
 
 function Viajes () {
-  const [viajes, setViajes] = useState([])
-  const [sortConfig, setSortConfig] = useState({ key: null, direction: '' })
+  const { viajes } = useViajes()
+  const { sortedEntity, handleSort, getSortIndicator } = useSortedEntity(viajes)
 
-  useEffect(() => {
-    axios
-      .get('http://localhost:3000/api/viajes')
-      .then((res) => {
-        const viajes = res.data.data.map((viaje) => ({
-          ...viaje,
-          fecha: formatDate(viaje.fecha)
-        }))
-        setViajes(viajes)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }, [])
-
-  const formatDate = (dateString) => {
-    const date = new Date(dateString)
-    const day = date.getDate().toString().padStart(2, '0')
-    const month = (date.getMonth() + 1).toString().padStart(2, '0')
-    const year = date.getFullYear().toString()
-
-    return `${day}-${month}-${year}`
-  }
-
-  const handleSort = (key) => {
-    let direction = 'ascending'
-    if (sortConfig.key === key && sortConfig.direction === 'ascending') {
-      direction = 'descending'
-    }
-    setSortConfig({ key, direction })
-  }
-
-  const sortedViajes = viajes.sort((a, b) => {
-    if (sortConfig.direction === 'ascending') {
-      if (a[sortConfig.key] < b[sortConfig.key]) return -1
-      if (a[sortConfig.key] > b[sortConfig.key]) return 1
-    } else if (sortConfig.direction === 'descending') {
-      if (a[sortConfig.key] > b[sortConfig.key]) return -1
-      if (a[sortConfig.key] < b[sortConfig.key]) return 1
-    }
-    return 0
-  })
-
-  const getSortIndicator = (key) => {
-    if (sortConfig.key === key) {
-      if (sortConfig.direction === 'ascending') {
-        return <span>&#9650;</span> // Up arrow
-      } else if (sortConfig.direction === 'descending') {
-        return <span>&#9660;</span> // Down arrow
-      }
-    }
-    return null
-  }
+  const sortedViajes = sortedEntity
 
   return (
     <div className='bg-gray-50 p-4'>

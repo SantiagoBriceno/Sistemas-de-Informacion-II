@@ -1,50 +1,11 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+import { useConductores } from '../../hooks/useCondoctores'
+import { useSortedEntity } from '../../hooks/useSortedEntity'
 
 function Conductores () {
-  const [conductores, setConductores] = useState([])
-  const [sortConfig, setSortConfig] = useState({ key: null, direction: '' })
-
-  useEffect(() => {
-    axios
-      .get('http://localhost:3000/api/conductores')
-      .then((res) => {
-        setConductores(res.data.data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }, [])
-
-  const handleSort = (key) => {
-    let direction = 'ascending'
-    if (sortConfig.key === key && sortConfig.direction === 'ascending') {
-      direction = 'descending'
-    }
-    setSortConfig({ key, direction })
-  }
-
-  const sortedConductores = conductores.sort((a, b) => {
-    if (sortConfig.direction === 'ascending') {
-      if (a[sortConfig.key] < b[sortConfig.key]) return -1
-      if (a[sortConfig.key] > b[sortConfig.key]) return 1
-    } else if (sortConfig.direction === 'descending') {
-      if (a[sortConfig.key] > b[sortConfig.key]) return -1
-      if (a[sortConfig.key] < b[sortConfig.key]) return 1
-    }
-    return 0
-  })
-
-  const getSortIndicator = (key) => {
-    if (sortConfig.key === key) {
-      if (sortConfig.direction === 'ascending') {
-        return <span>&#9650;</span> // Up arrow
-      } else if (sortConfig.direction === 'descending') {
-        return <span>&#9660;</span> // Down arrow
-      }
-    }
-    return null
-  }
+  const { conductores } = useConductores()
+  const { sortedEntity, handleSort, getSortIndicator } = useSortedEntity(conductores)
+  const sortedConductores = sortedEntity
 
   return (
     <div className='bg-gray-50 p-4'>

@@ -1,50 +1,11 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-
+import React from 'react'
+import { useVehiculos } from '../../hooks/useVehiculos'
+import { useSortedEntity } from '../../hooks/useSortedEntity'
 function Vehiculos () {
-  const [vehiculos, setVehiculos] = useState([])
-  const [sortConfig, setSortConfig] = useState({ key: null, direction: '' })
+  const { vehiculos } = useVehiculos()
+  const { sortedEntity, handleSort, getSortIndicator } = useSortedEntity(vehiculos)
 
-  useEffect(() => {
-    axios
-      .get('http://localhost:3000/api/vehiculos')
-      .then((res) => {
-        setVehiculos(res.data.data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }, [])
-
-  const handleSort = (key) => {
-    let direction = 'ascending'
-    if (sortConfig.key === key && sortConfig.direction === 'ascending') {
-      direction = 'descending'
-    }
-    setSortConfig({ key, direction })
-  }
-
-  const sortedVehiculos = vehiculos.sort((a, b) => {
-    if (sortConfig.direction === 'ascending') {
-      if (a[sortConfig.key] < b[sortConfig.key]) return -1
-      if (a[sortConfig.key] > b[sortConfig.key]) return 1
-    } else if (sortConfig.direction === 'descending') {
-      if (a[sortConfig.key] > b[sortConfig.key]) return -1
-      if (a[sortConfig.key] < b[sortConfig.key]) return 1
-    }
-    return 0
-  })
-
-  const getSortIndicator = (key) => {
-    if (sortConfig.key === key) {
-      if (sortConfig.direction === 'ascending') {
-        return <span>&#9650;</span> // Up arrow
-      } else if (sortConfig.direction === 'descending') {
-        return <span>&#9660;</span> // Down arrow
-      }
-    }
-    return null
-  }
+  const sortedVehiculos = sortedEntity
 
   return (
     <div className='bg-gray-50 p-4'>
