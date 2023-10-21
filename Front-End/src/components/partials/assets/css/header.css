@@ -1,10 +1,12 @@
 .header{
+    margin-left: 250px;
     background-color: #fff;
     border-bottom: 1px solid #ebebeb;
     height: 80px;
     position: fixed;
     top: 0;
     width: 100%;
+    padding-right: 250px;
     margin-bottom: 40px;
     background-color: #1e1c2a;
     color: #ffffff;
@@ -28,25 +30,17 @@
 
 .header_menu{
     display: flex;
+    flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+    
 }
 
-.header_menu_icon{
-    font-size: 20px;
-    color: #000;
-    margin-right: 10px;
-}
-
-.fas .fa-bars{
-    display: none;
-}
-
-ul{
-    list-style: none;
+.header_menu ul{
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 20px;
+    gap: 60px;
     font-weight: 600;
 }
 

@@ -1,0 +1,14 @@
+.container{
+    /* Necesito que el contenedor represente dos columnas */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-left: 310px;
+    margin-top: 120px;
+    width: 70%;
+    gap: 40px;
+}
+
+.container h1{
+    font-weight: 700;
+    font-size: large;
+}
