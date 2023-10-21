@@ -1,34 +1,37 @@
-import { pool } from '../db.js'
+import { pool } from "../db.js";
 
-const getGastos = async () => {
-  const [data] = await pool.query('SELECT * FROM gasto')
-  return data
-}
+const getViajes = async () => {
+	const [data] = await pool.query("SELECT * FROM viajes");
+	return data;
+};
 
-const getGasto = async (id) => {
-  const [data] = await pool.query('SELECT * FROM gasto WHERE id = ?', [id])
-  return data
-}
+const getViaje = async (id) => {
+	const [data] = await pool.query("SELECT * FROM viajes WHERE id = ?", [id]);
+	return data;
+};
 
-const createGasto = async (gasto) => {
-  const [data] = await pool.query('INSERT INTO gasto SET ?', [gasto])
-  return data
-}
+const createViaje = async (viaje) => {
+	const [data] = await pool.query("INSERT INTO viajes SET ?", [viaje]);
+	return data;
+};
 
-const editGasto = async (id, gasto) => {
-  const [data] = await pool.query('UPDATE gasto SET ? WHERE id = ?', [gasto, id])
-  return data
-}
+const editViaje = async (id, viaje) => {
+	const [data] = await pool.query("UPDATE viajes SET ? WHERE id = ?", [
+		viaje,
+		id,
+	]);
+	return data;
+};
 
-const deleteGasto = async (id) => {
-  const [data] = await pool.query('DELETE FROM gasto WHERE id = ?', [id])
-  return data
-}
+const deleteViaje = async (id) => {
+	const [data] = await pool.query("DELETE FROM viajes WHERE id = ?", [id]);
+	return data;
+};
 
 export default {
-  getGastos,
-  getGasto,
-  createGasto,
-  editGasto,
-  deleteGasto
-}
+	getViajes,
+	getViaje,
+	createViaje,
+	editViaje,
+	deleteViaje,
+};
