@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useContext } from 'react'
+import { GastoContext } from '../context/Gasto.jsx'
 import {
   getAllGastos,
   deleteGasto as deleteGastoApi
 } from '../service/Gastos.js'
 
 const useGastos = () => {
-  const [gastos, setGastos] = useState([])
+  const { gastos, setGastos } = useContext(GastoContext)
 
   const refreshGastos = () => {
     getAllGastos().then((gastos) => setGastos(gastos))

@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useContext } from 'react'
 import {
   getAllViajes,
   deleteViaje as deleteViajeApi
 } from '../service/Viajes.js'
+import { ViajeContext } from '../context/Viaje.jsx'
 
 const useViajes = () => {
-  const [viajes, setViajes] = useState([])
+  const { viajes, setViajes } = useContext(ViajeContext)
 
   const refreshViajes = () => {
     getAllViajes().then((viajes) => setViajes(viajes))

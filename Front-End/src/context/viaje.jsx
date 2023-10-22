@@ -1,6 +1,6 @@
 import { createContext, useState } from 'react'
 
-const ViajeContext = createContext()
+export const ViajeContext = createContext()
 
 export const ViajeProvider = ({ children }) => {
   const [viaje, setViaje] = useState({})

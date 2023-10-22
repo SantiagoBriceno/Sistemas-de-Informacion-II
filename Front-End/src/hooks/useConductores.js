@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useContext } from 'react'
+import { ConductorContext } from '../context/Conductor.jsx'
 import {
   getAllConductores,
   deleteConductor as deleteConductorApi
 } from '../service/Conductores.js'
 
 const useConductores = () => {
-  const [conductores, setConductores] = useState([])
+  const { conductores, setConductores } = useContext(ConductorContext)
 
   const refreshConductores = () => {
     getAllConductores().then((newConductores) =>

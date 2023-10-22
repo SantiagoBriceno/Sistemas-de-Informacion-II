@@ -1,6 +1,6 @@
 import { createContext, useState } from 'react'
 
-const VehiculoContext = createContext()
+export const VehiculoContext = createContext()
 
 export const VehiculoProvider = ({ children }) => {
   const [vehiculo, setVehiculo] = useState({})

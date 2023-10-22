@@ -1,6 +1,6 @@
 import { createContext, useState } from 'react'
 
-const GastoContext = createContext()
+export const GastoContext = createContext()
 
 export const GastoProvider = ({ children }) => {
   const [gasto, setGasto] = useState({})

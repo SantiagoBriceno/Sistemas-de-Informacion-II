@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useContext } from 'react'
 import {
   getAllVehiculos,
   deleteVehiculo as deleteVehiculoApi
 } from '../service/Vehiculos.js'
-
+import { VehiculoContext } from '../context/Vehiculo.jsx'
 const useVehiculos = () => {
-  const [vehiculos, setVehiculos] = useState([])
+  const { vehiculos, setVehiculos } = useContext(VehiculoContext)
 
   const refreshVehiculos = () => {
     getAllVehiculos().then((vehiculos) => setVehiculos(vehiculos))
