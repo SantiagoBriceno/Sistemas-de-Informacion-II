@@ -7,7 +7,6 @@ export const ConductorView = () => {
     <>
       <ConductorProvider>
         <FormularioConductor />
-
         <Conductores />
       </ConductorProvider>
 
