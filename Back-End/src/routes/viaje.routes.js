@@ -1,19 +1,25 @@
-import { Router } from 'express'
-import { getGasto, getGastos, createGasto, editGasto, deleteGasto } from '../controller/gasto.controllers.js'
-const router = Router()
+import { Router } from "express";
+import {
+	getViajes,
+	getViaje,
+	createViaje,
+	editViaje,
+	deleteViaje,
+} from "../controller/viaje.controllers.js";
+const router = Router();
 
 // RUTA PARA OBETENER TODOS LOS GASTOS DE LA BASE DE DATOS
-router.get('/', getGastos)
+router.get("/", getViajes);
 
 // RUTA PARA OBTENER UN GASTO DE LA BASE DE DATOS
-router.get('/:id', getGasto)
+router.get("/:id", getViaje);
 
 // RUTA PARA CREAR UN NUEVO GASTO EN LA BASE DE DATOS
-router.post('/', createGasto)
+router.post("/", createViaje);
 
 // RUTA PARA EDITAR UN GASTO EN LA BASE DE DATOS
-router.patch('/:id', editGasto)
+router.patch("/:id", editViaje);
 
-router.delete('/:id', deleteGasto)
+router.delete("/:id", deleteViaje);
 
-export default router
+export default router;
