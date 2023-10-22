@@ -6,11 +6,14 @@ export const getAllConductores = () => {
     .get(GET_ALL_CONDUCTORES)
     .then((res) => res.data)
     .then((data) => {
-      console.log(data.data)
       return data.data
     })
 }
 
 export const deleteConductor = (id) => {
   return axios.delete(`${GET_ALL_CONDUCTORES}/${id}`)
+}
+
+export const createConductor = (conductor) => {
+  return axios.post(GET_ALL_CONDUCTORES, conductor)
 }

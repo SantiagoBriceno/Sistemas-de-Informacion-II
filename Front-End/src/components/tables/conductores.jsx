@@ -4,7 +4,6 @@ import { useSortedEntity } from '../../hooks/useSortedEntity'
 
 function Conductores () {
   const { conductores, deleteConductor } = useConductores()
-  console.log(conductores)
   const { sortedEntity, handleSort, getSortIndicator } = useSortedEntity(conductores)
   const sortedConductores = sortedEntity
 

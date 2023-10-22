@@ -4,14 +4,15 @@ export const ConductorContext = createContext()
 
 export const ConductorProvider = ({ children }) => {
   const [conductores, setConductores] = useState([])
-  const [conductor, setConductor] = useState({})
-  const [conductorCedula, setConductorCedula] = useState('')
-  const [conductorName, setConductorName] = useState('')
-  const [conductorEdad, setConductorEdad] = useState('')
-  const [conductorTelefono, setConductorTelefono] = useState('')
-  const [conductorDisponibilidad, setConductorDisponibilidad] = useState('')
-  const [ganancia, setGanancia] = useState('')
-  const [viajes, setViajesRealizados] = useState([])
+  const [conductor, setConductor] = useState({
+    cedula: null,
+    nombre: null,
+    edad: null,
+    telefono: null,
+    disponibilidad: null,
+    ganancia: null,
+    viajesRealizados: null
+  })
 
   return (
     <ConductorContext.Provider
@@ -19,21 +20,7 @@ export const ConductorProvider = ({ children }) => {
         conductores,
         setConductores,
         conductor,
-        setConductor,
-        conductorCedula,
-        setConductorCedula,
-        conductorName,
-        setConductorName,
-        conductorEdad,
-        setConductorEdad,
-        conductorTelefono,
-        setConductorTelefono,
-        conductorDisponibilidad,
-        setConductorDisponibilidad,
-        ganancia,
-        setGanancia,
-        viajes,
-        setViajesRealizados
+        setConductor
       }}
     >
       {children}
