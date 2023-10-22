@@ -7,8 +7,8 @@ export const GastoView = () => {
     <>
       <GastoProvider>
         <FormularioGasto />
+        <Gastos />
       </GastoProvider>
-      <Gastos />
 
     </>
   )

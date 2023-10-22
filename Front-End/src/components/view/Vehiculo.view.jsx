@@ -7,9 +7,8 @@ export const VehiculoView = () => {
     <>
       <VehiculoProvider>
         <FormularioVehiculo />
+        <Vehiculos />
       </VehiculoProvider>
-      <Vehiculos />
-
     </>
   )
 }
