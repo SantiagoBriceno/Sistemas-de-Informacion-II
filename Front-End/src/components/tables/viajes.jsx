@@ -13,7 +13,7 @@ function Viajes () {
   }
 
   return (
-    <div className='bg-gray-50 p-4'>
+    <div className='bg-gray-50 p-4 ml-72'>
       <h1 className='text-2xl font-bold mb-4'>Viajes</h1>
       <table className='table-auto w-full'>
         <thead>

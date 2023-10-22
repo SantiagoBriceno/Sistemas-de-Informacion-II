@@ -2,13 +2,14 @@ import React from 'react'
 import { Outlet, Link } from 'react-router-dom'
 import './assets/css/header.css'
 import './assets/css/sidebar.css'
+import logo from './assets/images/logo.png'
 
 const Header = () => {
   return (
     <header className='header'>
       <div className='header_container'>
         <div className='header_logo'>
-          LOGO
+          <img src={logo} alt='logo' />
         </div>
         <div className='header_menu'>
           <ul>
