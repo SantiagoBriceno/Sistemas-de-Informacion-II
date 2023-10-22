@@ -7,8 +7,8 @@ export const ViajeView = () => {
     <>
       <ViajeProvider>
         <FormularioViaje />
+        <Viajes />
       </ViajeProvider>
-      <Viajes />
     </>
   )
 }

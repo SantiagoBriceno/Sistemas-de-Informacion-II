@@ -1,34 +1,34 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react'
 import {
-	getAllConductores,
-	deleteConductor as deleteConductorApi,
-} from "../service/Conductores.js";
+  getAllConductores,
+  deleteConductor as deleteConductorApi
+} from '../service/Conductores.js'
 
 const useConductores = () => {
-	const [conductores, setConductores] = useState([]);
+  const [conductores, setConductores] = useState([])
 
-	const refreshConductores = () => {
-		getAllConductores().then((newConductores) =>
-			setConductores(newConductores)
-		);
-	};
-	useEffect(() => {
-		refreshConductores();
-	}, []);
+  const refreshConductores = () => {
+    getAllConductores().then((newConductores) =>
+      setConductores(newConductores)
+    )
+  }
+  useEffect(() => {
+    refreshConductores()
+  }, [])
 
-	const deleteConductor = async (cedula) => {
-		try {
-			await deleteConductorApi(cedula);
-			setConductores((prevConductores) =>
-				prevConductores.filter(
-					(conductor) => conductor.cedula !== cedula
-				)
-			);
-		} catch (error) {
-			console.log("Error deleting conductor:", error);
-		}
-	};
-	return { conductores, deleteConductor };
-};
+  const deleteConductor = async (cedula) => {
+    try {
+      await deleteConductorApi(cedula)
+      setConductores((prevConductores) =>
+        prevConductores.filter(
+          (conductor) => conductor.cedula !== cedula
+        )
+      )
+    } catch (error) {
+      console.log('Error deleting conductor:', error)
+    }
+  }
+  return { conductores, deleteConductor }
+}
 
-export { useConductores };
+export { useConductores }
