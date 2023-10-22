@@ -1,20 +1,19 @@
 import React from 'react'
 import { useSortedEntity } from '../../hooks/useSortedEntity'
-import { useViajes } from '../../hooks/useViajes'
+import { useGastos } from '../../hooks/useGastos'
 
-function Viajes () {
-  const { viajes, deleteViaje } = useViajes()
-  const { sortedEntity, handleSort, getSortIndicator } = useSortedEntity(viajes)
+function Gastos () {
+  const { gastos, deleteGasto } = useGastos()
+  const { sortedEntity, handleSort, getSortIndicator } = useSortedEntity(gastos)
 
-  const sortedViajes = sortedEntity
+  const sortedGastos = sortedEntity
 
-  const handleDelete = (viaje) => {
-    deleteViaje(viaje.id)
+  const handleDelete = (gasto) => {
+    deleteGasto(gasto.id)
   }
-
   return (
     <div className='bg-gray-50 p-4'>
-      <h1 className='text-2xl font-bold mb-4'>Viajes</h1>
+      <h1 className='text-2xl font-bold mb-4'>Gastos</h1>
       <table className='table-auto w-full'>
         <thead>
           <tr>
@@ -26,27 +25,15 @@ function Viajes () {
             </th>
             <th
               className='px-4 py-2 text-center cursor-pointer'
-              onClick={() => handleSort('fechaInicio')}
+              onClick={() => handleSort('fecha')}
             >
-              Fecha de inicio {getSortIndicator('fechaInicio')}
+              Fecha {getSortIndicator('fecha')}
             </th>
             <th
               className='px-4 py-2 text-center cursor-pointer'
-              onClick={() => handleSort('fechaFin')}
+              onClick={() => handleSort('descripcion')}
             >
-              Fecha de finalizaion {getSortIndicator('fechaFin')}
-            </th>
-            <th
-              className='px-4 py-2 text-center cursor-pointer'
-              onClick={() => handleSort('ubicacion')}
-            >
-              Ubicacion {getSortIndicator('ubicacion')}
-            </th>
-            <th
-              className='px-4 py-2 text-center cursor-pointer'
-              onClick={() => handleSort('distancia')}
-            >
-              Distancia {getSortIndicator('distancia')}
+              Descripcion {getSortIndicator('descripcion')}
             </th>
             <th
               className='px-4 py-2 text-center cursor-pointer'
@@ -58,30 +45,24 @@ function Viajes () {
           </tr>
         </thead>
         <tbody>
-          {sortedViajes.map((viaje) => (
-            <tr key={viaje.id} className='hover:bg-slate-200'>
+          {sortedGastos.map((gasto) => (
+            <tr key={gasto.id} className='hover:bg-gray-200'>
               <td className='border px-4 py-2 text-center'>
-                {viaje.placaVehiculo}
+                {gasto.placaVehiculo}
               </td>
               <td className='border px-4 py-2 text-center'>
-                {viaje.fechaInicio}
+                {gasto.fecha}
               </td>
               <td className='border px-4 py-2 text-center'>
-                {viaje.fechaFin}
+                {gasto.descripcion}
               </td>
               <td className='border px-4 py-2 text-center'>
-                {viaje.ubicacion}
-              </td>
-              <td className='border px-4 py-2 text-center'>
-                {viaje.distancia}
-              </td>
-              <td className='border px-4 py-2 text-center'>
-                {viaje.costo}
+                {gasto.costo}
               </td>
               <td className='border px-4 py-2 text-center'>
                 <button
                   className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-4'
-                  onClick={() => handleDelete(viaje)}
+                  onClick={() => handleDelete(gasto)}
                 >
                   Eliminar
                 </button>
@@ -97,4 +78,4 @@ function Viajes () {
   )
 }
 
-export default Viajes
+export default Gastos
