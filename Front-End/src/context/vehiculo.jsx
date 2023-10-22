@@ -3,6 +3,7 @@ import { createContext, useState } from 'react'
 export const VehiculoContext = createContext()
 
 export const VehiculoProvider = ({ children }) => {
+  const [vehiculos, setVehiculos] = useState([])
   const [vehiculo, setVehiculo] = useState({})
   const [vehiculoPlaca, setVehiculoPlaca] = useState('')
   const [vehiculoMarca, setVehiculoMarca] = useState('')
@@ -16,6 +17,8 @@ export const VehiculoProvider = ({ children }) => {
   return (
     <VehiculoContext.Provider
       value={{
+        vehiculos,
+        setVehiculos,
         vehiculo,
         setVehiculo,
         vehiculoPlaca,

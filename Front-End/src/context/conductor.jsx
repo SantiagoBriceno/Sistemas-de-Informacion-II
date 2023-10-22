@@ -3,7 +3,7 @@ import { createContext, useState } from 'react'
 export const ConductorContext = createContext()
 
 export const ConductorProvider = ({ children }) => {
-  const [conductores, setConductores] = useState(null)
+  const [conductores, setConductores] = useState([])
   const [conductor, setConductor] = useState({})
   const [conductorCedula, setConductorCedula] = useState('')
   const [conductorName, setConductorName] = useState('')

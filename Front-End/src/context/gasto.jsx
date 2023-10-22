@@ -3,6 +3,7 @@ import { createContext, useState } from 'react'
 export const GastoContext = createContext()
 
 export const GastoProvider = ({ children }) => {
+  const [gastos, setGastos] = useState([])
   const [gasto, setGasto] = useState({})
   const [gastoPlacaVehiculo, setGastoPlacaVehiculo] = useState('')
   const [gastoFecha, setGastoFecha] = useState('')
@@ -11,6 +12,8 @@ export const GastoProvider = ({ children }) => {
   return (
     <GastoContext.Provider
       value={{
+        gastos,
+        setGastos,
         gasto,
         setGasto,
         gastoPlacaVehiculo,
