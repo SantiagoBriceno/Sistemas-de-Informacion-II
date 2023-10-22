@@ -1,5 +1,5 @@
 import React from 'react'
-import { useConductores } from '../../hooks/useCondoctores'
+import { useConductores } from '../../hooks/useConductores'
 import { useSortedEntity } from '../../hooks/useSortedEntity'
 
 function Conductores () {
