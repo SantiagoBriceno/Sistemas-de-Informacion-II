@@ -13,3 +13,7 @@ export const getAllVehiculos = () => {
 export const deleteVehiculo = (placa) => {
   return axios.delete(`${GET_ALL_VEHICULOS}/${placa}`)
 }
+
+export const createVehiculo = (vehiculo) => {
+  return axios.post(GET_ALL_VEHICULOS, vehiculo)
+}

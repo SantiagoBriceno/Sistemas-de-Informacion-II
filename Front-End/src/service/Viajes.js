@@ -24,3 +24,7 @@ export const getAllViajes = () => {
 export const deleteViaje = (id) => {
   return axios.delete(`${GET_ALL_VIAJES}/${id}`)
 }
+
+export const createViaje = (viaje) => {
+  return axios.post(GET_ALL_VIAJES, viaje)
+}
