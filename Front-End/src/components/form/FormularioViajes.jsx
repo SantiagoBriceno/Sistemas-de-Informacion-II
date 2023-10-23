@@ -6,11 +6,11 @@ import './formulario.css'
 import { useSearchViajes } from '../../hooks/formularios/useSearchViajes.js'
 
 const FormularioViajes = () => {
-  const { viaje, setViajes, error, handleSubmit } = useSearchViajes()
-  console.log(viaje.fecha)
+  const { viaje, setViaje, error, handleSubmit } = useSearchViajes()
+  console.log(viaje)
   const handleChange = (e) => {
     const newValue = e.target.type === 'checkbox' ? e.target.checked : e.target.value
-    setViajes({
+    setViaje({
       ...viaje,
       [e.target.id]: newValue
     })
@@ -21,53 +21,58 @@ const FormularioViajes = () => {
         <h1>Formulario de viaje</h1>
         <br />
         <Input
-          id='id'
+          id='placaVehiculo'
           label='Identificador del viaje'
           name='123456'
           type='number'
-          error={error.id}
-          value={viaje.id}
-          onChange={handleChange}
+          error={error.placaVehiculo}
+          value={viaje.placaVehiculo}
+          event={handleChange}
         />
         <Input
+          id='fechaInicio'
           label='Fecha de Inicio'
           name='01/01/2021'
           type='date'
           error={error.fechaInicio}
           value={viaje.fechaInicio}
-          onChange={handleChange}
+          event={handleChange}
         />
         <Input
+          id='fechaFin'
           label='Fecha de Finalizacion'
           name='01/03/2021'
           type='date'
           error={error.fechaFin}
           value={viaje.fechaFin}
-          onChange={handleChange}
+          event={handleChange}
         />
         <Input
+          id='ubicacion'
           label='Ubicación'
           name='Mañongo, Naguanagua'
           type='text'
           error={error.ubicacion}
           value={viaje.ubicacion}
-          onChange={handleChange}
+          event={handleChange}
         />
         <Input
+          id='distancia'
           label='Distancia recorrida en el viaje'
           name='1.324 Km'
           type='number'
           error={error.distancia}
           value={viaje.distancia}
-          onChange={handleChange}
+          event={handleChange}
         />
         <Input
+          id='costo'
           label='Costo del viaje'
           name='1.540 BsS'
           type='number'
           error={error.costo}
           value={viaje.costo}
-          onChange={handleChange}
+          event={handleChange}
 
         />
         <Button onSubmit={handleSubmit} />

@@ -6,7 +6,7 @@ export const ViajeProvider = ({ children }) => {
   const [viajes, setViajes] = useState([])
   const [viaje, setViaje] = useState({
     id: '',
-    vehiculo: '',
+    placaVehiculo: '',
     fechaInicio: '',
     fechaFin: '',
     ubicacion: '',

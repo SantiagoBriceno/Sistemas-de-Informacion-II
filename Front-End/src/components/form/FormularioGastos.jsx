@@ -6,7 +6,6 @@ import { useSearchGastos } from '../../hooks/formularios/useSearchGastos.js'
 
 const FormularioGasto = () => {
   const { gasto, setGasto, error, handleSubmit } = useSearchGastos()
-  console.log(gasto.fecha)
   const handleChange = (e) => {
     const newValue = e.target.type === 'checkbox' ? e.target.checked : e.target.value
     setGasto({
