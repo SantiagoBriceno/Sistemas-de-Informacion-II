@@ -5,7 +5,8 @@ import {
   createVehiculo,
   editVehiculo,
   deleteVehiculo,
-  getPlacas
+  getPlacas,
+  getVehiculoAndConductor
 } from '../controller/vehiculo.controllers.js'
 
 const router = Router()
@@ -18,6 +19,9 @@ router.get('/:placa', getVehiculo)
 
 // RUTA PARA OBTENER TODAS LAS PLACAS DE LOS VEHICULOS DE LA BASE DE DATOS
 router.get('/id/placas', getPlacas)
+
+// RUTA PARA OBTENER TODOS LOS VEHICULOS CON SU RESPECTIVO CONDUCTOR
+router.get('/id/Conductor', getVehiculoAndConductor)
 
 // RUTA PARA CREAR UN NUEVO VEHICULO EN LA BASE DE DATOS
 router.post('/', createVehiculo)

@@ -4,12 +4,16 @@ import {
   getViaje,
   createViaje,
   editViaje,
-  deleteViaje
+  deleteViaje,
+  getViajeVehiculoAndConductor
 } from '../controller/viaje.controllers.js'
 const router = Router()
 
 // RUTA PARA OBETENER TODOS LOS GASTOS DE LA BASE DE DATOS
 router.get('/', getViajes)
+
+// RUTA PARA OBTENER TODOS LOS VIAJES CON SU RESPECTIVO VEHICULO Y CONDUCTOR
+router.get('/id/vehiculoConductor', getViajeVehiculoAndConductor)
 
 // RUTA PARA OBTENER UN GASTO DE LA BASE DE DATOS
 router.get('/:id', getViaje)

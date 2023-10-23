@@ -32,10 +32,16 @@ const deleteViaje = async (id) => {
   return data
 }
 
+const getViajeVehiculoAndConductor = async () => {
+  const [data] = await pool.query('SELECT ubicacion, distancia, fechaInicio, marca, modelo, nombre FROM viajes INNER JOIN vehiculo ON placaVehiculo = vehiculo.placa INNER JOIN conductor ON vehiculo.cedulaConductor = conductor.cedula')
+  return data
+}
+
 export default {
   getViajes,
   getViaje,
   createViaje,
   editViaje,
-  deleteViaje
+  deleteViaje,
+  getViajeVehiculoAndConductor
 }

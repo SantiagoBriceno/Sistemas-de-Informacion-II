@@ -31,11 +31,17 @@ const deleteVehiculo = async (placa) => {
   return data
 }
 
+const getVehiculoAndConductor = async () => {
+  const [data] = await pool.query('SELECT placa, marca, modelo, conductor.nombre FROM vehiculo INNER JOIN conductor ON cedulaConductor = conductor.cedula')
+  return data
+}
+
 export default {
   getVehiculos,
   getVehiculo,
   createVehiculo,
   editVehiculo,
   deleteVehiculo,
-  getPlacas
+  getPlacas,
+  getVehiculoAndConductor
 }

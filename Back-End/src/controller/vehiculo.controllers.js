@@ -133,3 +133,26 @@ export const deleteVehiculo = async (req, res) => {
     })
   }
 }
+
+export const getVehiculoAndConductor = async (req, res) => {
+  try {
+    const vehiculo = await service.getVehiculoAndConductor()
+    console.log(vehiculo)
+    if (vehiculo) {
+      res.send({
+        status: 200,
+        data: vehiculo
+      })
+    } else {
+      res.status(404).send({
+        status: 404,
+        message: 'No se encontraron vehiculos'
+      })
+    }
+  } catch (e) {
+    res.status(500).send({
+      status: 'ERROR',
+      message: 'OPS! ERROR AL OBTENER LOS VEHICULOS'
+    })
+  }
+}
