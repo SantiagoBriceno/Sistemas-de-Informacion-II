@@ -18,7 +18,6 @@ export const useSearchVehiculos = () => {
     marca: false,
     modelo: false,
     capacidad: false,
-    viajesRealizados: false,
     cedulaConductor: false
   })
 
@@ -48,12 +47,6 @@ export const useSearchVehiculos = () => {
       setError((error) => ({ ...error, capacidad: false }))
     }
 
-    if (vehiculo.viajesRealizados === '' || !validateNumber(vehiculo.viajesRealizados)) {
-      setError((error) => ({ ...error, viajesRealizados: true }))
-    } else {
-      setError((error) => ({ ...error, viajesRealizados: false }))
-    }
-
     if (vehiculo.cedulaConductor === '' || !validateCedula(vehiculo.cedulaConductor)) {
       setError((error) => ({ ...error, cedulaConductor: true }))
     } else {
@@ -68,7 +61,6 @@ export const useSearchVehiculos = () => {
       !error.marca &&
       !error.modelo &&
       !error.capacidad &&
-      !error.viajesRealizados &&
       !error.cedulaConductor
     ) {
       createVehiculo(vehiculo)

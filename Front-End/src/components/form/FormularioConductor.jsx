@@ -66,15 +66,6 @@ const FormularioConductor = () => {
           event={handleChanges}
         />
         <Input
-          id='viajesRealizados'
-          label='Viajes realizados'
-          name='1.324 Km'
-          type='number'
-          error={error.viajesRealizados}
-          value={conductor.viajesRealizados}
-          event={handleChanges}
-        />
-        <Input
           id='disponibilidad'
           label='Disponibilidad'
           type='checkbox'

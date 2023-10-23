@@ -19,8 +19,7 @@ export const useSearchConductor = () => {
     edad: false,
     telefono: false,
     disponibilidad: false,
-    ganancia: false,
-    viajesRealizados: false
+    ganancia: false
   })
 
   useEffect(() => {
@@ -60,12 +59,6 @@ export const useSearchConductor = () => {
     } else {
       setError((error) => ({ ...error, ganancia: false }))
     }
-
-    if (conductor.viajesRealizados === '' && !validateNumber(conductor.viajesRealizados)) {
-      setError((error) => ({ ...error, viajesRealizados: true }))
-    } else {
-      setError((error) => ({ ...error, viajesRealizados: false }))
-    }
   }, [conductor])
 
   const handleSubmit = (e) => {
@@ -76,8 +69,7 @@ export const useSearchConductor = () => {
       !error.edad &&
       !error.telefono &&
       !error.disponibilidad &&
-      !error.ganancia &&
-      !error.viajesRealizados
+      !error.ganancia
     ) {
       createConductor(conductor)
         .then((res) => {

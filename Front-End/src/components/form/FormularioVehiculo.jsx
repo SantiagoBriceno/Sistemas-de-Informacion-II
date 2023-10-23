@@ -69,15 +69,6 @@ const FormularioVehiculo = () => {
           event={handleChange}
         />
         <Input
-          id='viajesRealizados'
-          label='¿Cuantos viajes ha realizado?'
-          name='1.324 Km'
-          type='number'
-          error={error.viajesRealizados}
-          value={vehiculo.viajesRealizados}
-          event={handleChange}
-        />
-        <Input
           id='cedulaConductor'
           label='Cédula de identidad'
           name='28402367'
