@@ -7,7 +7,6 @@ import { useSearchVehiculos } from '../../hooks/formularios/useSearchVehiculos.j
 
 const FormularioVehiculo = () => {
   const { vehiculo, setVehiculo, error, handleSubmit } = useSearchVehiculos()
-  console.log(vehiculo.fecha)
   const handleChange = (e) => {
     const newValue = e.target.type === 'checkbox' ? e.target.checked : e.target.value
     setVehiculo({
