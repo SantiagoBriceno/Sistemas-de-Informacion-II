@@ -25,43 +25,43 @@ export const useSearchConductor = () => {
 
   useEffect(() => {
     // VALIDACIONES DE CADA CAMPO
-    if (conductor.cedula && !validateCedula(conductor.cedula)) {
+    if (conductor.cedula === '' || !validateCedula(conductor.cedula)) {
       setError((error) => ({ ...error, cedula: true }))
     } else {
       setError((error) => ({ ...error, cedula: false }))
     }
 
-    if (conductor.nombre && conductor.nombre === '') {
+    if (conductor.nombre === '' || conductor.nombre === '') {
       setError((error) => ({ ...error, nombre: true }))
     } else {
       setError((error) => ({ ...error, nombre: false }))
     }
 
-    if (conductor.edad && !validateNumber(conductor.edad)) {
+    if (conductor.edad === '' || !validateNumber(conductor.edad)) {
       setError((error) => ({ ...error, edad: true }))
     } else {
       setError((error) => ({ ...error, edad: false }))
     }
 
-    if (conductor.telefono && !validateTelefono(conductor.telefono)) {
+    if (conductor.telefono === '' || !validateTelefono(conductor.telefono)) {
       setError((error) => ({ ...error, telefono: true }))
     } else {
       setError((error) => ({ ...error, telefono: false }))
     }
 
-    if (conductor.disponibilidad && !validateNumber(conductor.disponibilidad)) {
+    if (conductor.disponibilidad === '' && !validateNumber(conductor.disponibilidad)) {
       setError((error) => ({ ...error, disponibilidad: true }))
     } else {
       setError((error) => ({ ...error, disponibilidad: false }))
     }
 
-    if (conductor.ganancia && !validateNumber(conductor.ganancia)) {
+    if (conductor.ganancia === '' && !validateNumber(conductor.ganancia)) {
       setError((error) => ({ ...error, ganancia: true }))
     } else {
       setError((error) => ({ ...error, ganancia: false }))
     }
 
-    if (conductor.viajesRealizados && !validateNumber(conductor.viajesRealizados)) {
+    if (conductor.viajesRealizados === '' && !validateNumber(conductor.viajesRealizados)) {
       setError((error) => ({ ...error, viajesRealizados: true }))
     } else {
       setError((error) => ({ ...error, viajesRealizados: false }))

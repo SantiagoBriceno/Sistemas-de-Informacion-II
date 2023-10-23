@@ -38,6 +38,9 @@ const Sidebar = () => {
             <li>
               <Link to='/viaje'>Viajes</Link>
             </li>
+            <li>
+              <Link to='/Gasto'>Gastos</Link>
+            </li>
           </ul>
         </div>
       </div>

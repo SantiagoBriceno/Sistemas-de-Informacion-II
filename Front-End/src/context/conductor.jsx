@@ -5,13 +5,13 @@ export const ConductorContext = createContext()
 export const ConductorProvider = ({ children }) => {
   const [conductores, setConductores] = useState([])
   const [conductor, setConductor] = useState({
-    cedula: null,
-    nombre: null,
-    edad: null,
-    telefono: null,
-    disponibilidad: null,
-    ganancia: null,
-    viajesRealizados: null
+    cedula: '',
+    nombre: '',
+    edad: '',
+    telefono: '',
+    disponibilidad: '',
+    ganancia: '',
+    viajesRealizados: ''
   })
 
   return (

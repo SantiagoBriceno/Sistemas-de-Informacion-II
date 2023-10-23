@@ -5,6 +5,7 @@ import { useSearchConductor } from '../../hooks/formularios/useSearchConductor.j
 
 const FormularioConductor = () => {
   const { conductor, setConductor, error, handleSubmit } = useSearchConductor()
+  console.log(conductor)
 
   const handleChanges = (e) => {
     const newValue = e.target.type === 'checkbox' ? e.target.checked : e.target.value

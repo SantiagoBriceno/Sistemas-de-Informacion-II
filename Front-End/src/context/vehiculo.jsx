@@ -4,15 +4,16 @@ export const VehiculoContext = createContext()
 
 export const VehiculoProvider = ({ children }) => {
   const [vehiculos, setVehiculos] = useState([])
-  const [vehiculo, setVehiculo] = useState({})
-  const [vehiculoPlaca, setVehiculoPlaca] = useState('')
-  const [vehiculoMarca, setVehiculoMarca] = useState('')
-  const [vehiculoModelo, setVehiculoModelo] = useState('')
-  const [vehiculoCapacidad, setVehiculoCapacidad] = useState(null)
-  const [vehiculoDisponibilidad, setVehiculoDisponibilidad] = useState('')
-  const [vehiculoAire, setVehiculoAire] = useState(null)
-  const [vehiculoViajes, setVehiculoViajes] = useState(null)
-  const [vehiculoConductor, setVehiculoConductor] = useState('')
+  const [vehiculo, setVehiculo] = useState({
+    placa: '',
+    marca: '',
+    modelo: '',
+    capacidad: '',
+    disponibilidad: '',
+    aire: '',
+    viajesRealizados: '',
+    cedulaConductor: ''
+  })
 
   return (
     <VehiculoContext.Provider
@@ -20,23 +21,7 @@ export const VehiculoProvider = ({ children }) => {
         vehiculos,
         setVehiculos,
         vehiculo,
-        setVehiculo,
-        vehiculoPlaca,
-        setVehiculoPlaca,
-        vehiculoMarca,
-        setVehiculoMarca,
-        vehiculoModelo,
-        setVehiculoModelo,
-        vehiculoAire,
-        setVehiculoAire,
-        vehiculoViajes,
-        setVehiculoViajes,
-        vehiculoCapacidad,
-        setVehiculoCapacidad,
-        vehiculoDisponibilidad,
-        setVehiculoDisponibilidad,
-        vehiculoConductor,
-        setVehiculoConductor
+        setVehiculo
       }}
     >
       {children}

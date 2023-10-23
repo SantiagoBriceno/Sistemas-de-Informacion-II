@@ -4,13 +4,15 @@ export const ViajeContext = createContext()
 
 export const ViajeProvider = ({ children }) => {
   const [viajes, setViajes] = useState([])
-  const [viaje, setViaje] = useState({})
-  const [viajeVehiculo, setViajeVehiculo] = useState('')
-  const [viajeFechaInicio, setViajeFechaInicio] = useState('')
-  const [viajeFechaFin, setViajeFechaFin] = useState('')
-  const [viajeUbicacion, setViajeUbicacion] = useState('')
-  const [viajeDistancia, setViajeDistancia] = useState('')
-  const [viajeCosto, setViajeCosto] = useState('')
+  const [viaje, setViaje] = useState({
+    id: '',
+    vehiculo: '',
+    fechaInicio: '',
+    fechaFin: '',
+    ubicacion: '',
+    distancia: '',
+    costo: ''
+  })
 
   return (
     <ViajeContext.Provider
@@ -18,19 +20,7 @@ export const ViajeProvider = ({ children }) => {
         viajes,
         setViajes,
         viaje,
-        setViaje,
-        viajeVehiculo,
-        setViajeVehiculo,
-        viajeFechaInicio,
-        setViajeFechaInicio,
-        viajeFechaFin,
-        setViajeFechaFin,
-        viajeUbicacion,
-        setViajeUbicacion,
-        viajeDistancia,
-        setViajeDistancia,
-        viajeCosto,
-        setViajeCosto
+        setViaje
       }}
     >
       {children}

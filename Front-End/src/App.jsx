@@ -5,6 +5,7 @@ import Template from './components/partials/template.jsx'
 import { ConductorView } from './components/view/Conductor.view.jsx'
 import { VehiculoView } from './components/view/Vehiculo.view.jsx'
 import { ViajeView } from './components/view/Viaje.view.jsx'
+import { GastoView } from './components/view/Gasto.view.jsx'
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: '/viaje',
         element: <ViajeView />
+      },
+      {
+        path: '/gasto',
+        element: <GastoView />
       }
     ]
   }
