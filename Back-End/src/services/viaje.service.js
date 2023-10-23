@@ -12,6 +12,10 @@ const getViaje = async (id) => {
 
 const createViaje = async (viaje) => {
   const [data] = await pool.query('INSERT INTO viajes SET ?', [viaje])
+  // SUMAMOS UN VIAJE A LOS VIAJES DEL VEHICULO
+  await pool.query('UPDATE vehiculo SET viajesRealizados = viajesRealizados + 1 WHERE placa = ?', [viaje.placaVehiculo])
+  // SUMAMOS UN VIAJE A LOS VIAJES DEL CONDUCTOR
+  await pool.query('UPDATE conductor SET viajesRealizados = viajesRealizados + 1 WHERE id = ?', [viaje.idConductor])
   return data
 }
 

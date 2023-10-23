@@ -10,6 +10,12 @@ const getVehiculo = async (placa) => {
   return data
 }
 
+const getPlacas = async () => {
+  const [data] = await pool.query('SELECT placa FROM vehiculo')
+  console.log(data)
+  return data
+}
+
 const createVehiculo = async (vehiculo) => {
   const [data] = await pool.query('INSERT INTO vehiculo SET ?', [vehiculo])
   return data
@@ -30,5 +36,6 @@ export default {
   getVehiculo,
   createVehiculo,
   editVehiculo,
-  deleteVehiculo
+  deleteVehiculo,
+  getPlacas
 }
