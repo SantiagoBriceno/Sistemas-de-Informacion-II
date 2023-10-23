@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useMemo, useState } from 'react'
 import { ViajeContext } from '../../context/viaje.jsx'
 import {
   validatePlaca,
@@ -8,12 +8,14 @@ import {
 } from '../utils/validationField.js'
 
 import {
-  createViaje
+  createViaje,
+  getPlacas
 } from '../../service/Viajes.js'
 
 export const useSearchViajes = () => {
   const { viaje, setViaje } = useContext(ViajeContext)
   const [exito, setExito] = useState(false)
+  const [placas, setPlacas] = useState([])
   const [error, setError] = useState({
     placaVehiculo: false,
     fechaInicio: false,
@@ -86,5 +88,10 @@ export const useSearchViajes = () => {
         .catch((err) => console.log(err))
     }
   }
-  return { viaje, setViaje, error, handleSubmit, exito }
+
+  useMemo(() => {
+    getPlacas().then((placas) => setPlacas(placas))
+  }, [])
+
+  return { viaje, setViaje, error, handleSubmit, exito, placas }
 }

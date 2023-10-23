@@ -6,8 +6,7 @@ import './formulario.css'
 import { useSearchViajes } from '../../hooks/formularios/useSearchViajes.js'
 
 const FormularioViajes = () => {
-  const { viaje, setViaje, error, handleSubmit } = useSearchViajes()
-  console.log(viaje)
+  const { viaje, setViaje, error, handleSubmit, placas } = useSearchViajes()
   const handleChange = (e) => {
     const newValue = e.target.type === 'checkbox' ? e.target.checked : e.target.value
     setViaje({
@@ -24,10 +23,11 @@ const FormularioViajes = () => {
           id='placaVehiculo'
           label='Identificador del viaje'
           name='123456'
-          type='number'
+          type='select'
           error={error.placaVehiculo}
           value={viaje.placaVehiculo}
           event={handleChange}
+          options={placas}
         />
         <Input
           id='fechaInicio'

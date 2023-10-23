@@ -5,7 +5,7 @@ import './formulario.css'
 import { useSearchGastos } from '../../hooks/formularios/useSearchGastos.js'
 
 const FormularioGasto = () => {
-  const { gasto, setGasto, error, handleSubmit } = useSearchGastos()
+  const { gasto, setGasto, error, handleSubmit, placas } = useSearchGastos()
   const handleChange = (e) => {
     const newValue = e.target.type === 'checkbox' ? e.target.checked : e.target.value
     setGasto({
@@ -21,11 +21,12 @@ const FormularioGasto = () => {
         <Input
           id='placaVehiculo'
           label='Placa del vehículo'
-          name='ABC-123'
-          type='text'
+          name='Ej: 123ABC'
+          type='select'
           error={error.placaVehiculo}
           value={gasto.placaVehiculo}
           event={handleChange}
+          options={placas}
         />
         <Input
           id='fecha'

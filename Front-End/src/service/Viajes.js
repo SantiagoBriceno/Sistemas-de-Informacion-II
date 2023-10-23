@@ -1,4 +1,4 @@
-import { GET_ALL_VIAJES } from '../constants.js'
+import { GET_ALL_VIAJES, GET_ALL_VEHICULOS_PLACAS } from '../constants.js'
 import axios from 'axios'
 const formatDate = (dateString) => {
   const date = new Date(dateString)
@@ -27,4 +27,11 @@ export const deleteViaje = (id) => {
 
 export const createViaje = (viaje) => {
   return axios.post(GET_ALL_VIAJES, viaje)
+}
+
+export const getPlacas = () => {
+  return axios
+    .get(GET_ALL_VEHICULOS_PLACAS)
+    .then((res) => res.data)
+    .then((data) => data.data)
 }

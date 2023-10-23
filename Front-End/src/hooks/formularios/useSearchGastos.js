@@ -10,8 +10,13 @@ import {
   createGasto
 } from '../../service/Gastos.js'
 
+import {
+  getPlacas
+} from '../../service/Viajes.js'
+
 export const useSearchGastos = () => {
   const { gasto, setGasto } = useContext(GastoContext)
+  const [placas, setPlacas] = useState([])
   const [exito, setExito] = useState(false)
   const [error, setError] = useState({
     placaVehiculo: false,
@@ -71,5 +76,11 @@ export const useSearchGastos = () => {
         .catch((err) => console.log(err))
     }
   }
-  return { gasto, setGasto, error, handleSubmit, exito }
+
+  useEffect(() => {
+    getPlacas().then((res) => {
+      setPlacas(res)
+    })
+  }, [])
+  return { gasto, setGasto, error, handleSubmit, exito, placas }
 }

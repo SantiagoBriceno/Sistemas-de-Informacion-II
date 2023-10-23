@@ -3,7 +3,7 @@ import {
   getAllViajes,
   deleteViaje as deleteViajeApi
 } from '../service/Viajes.js'
-import { ViajeContext } from '../context/Viaje.jsx'
+import { ViajeContext } from '../context/viaje.jsx'
 
 const useViajes = () => {
   const { viajes, setViajes } = useContext(ViajeContext)
