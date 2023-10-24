@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { VehiculoContext } from '../../context/vehiculo.jsx'
+import { VehiculoContext } from '../../context/Vehiculo.jsx'
 import {
   validatePlaca,
   validateNumber,
