@@ -17,6 +17,7 @@ const getPlacas = async () => {
 }
 
 const createVehiculo = async (vehiculo) => {
+  vehiculo.viajesRealizados = 0
   const [data] = await pool.query('INSERT INTO vehiculo SET ?', [vehiculo])
   return data
 }
