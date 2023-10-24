@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { GastoContext } from '../../context/gasto.jsx'
+import { GastoContext } from '../../context/Gasto.jsx'
 import {
   validatePlaca,
   validateFecha,
