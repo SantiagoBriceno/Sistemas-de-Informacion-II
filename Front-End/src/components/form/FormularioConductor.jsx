@@ -3,9 +3,9 @@ import Button from './components/Button'
 import './formulario.css'
 import { useSearchConductor } from '../../hooks/formularios/useSearchConductor.js'
 
-const FormularioConductor = () => {
+const FormularioConductor = ({ editMode, editConductor }) => {
   const { conductor, setConductor, error, handleSubmit } = useSearchConductor()
-  console.log(conductor)
+  console.log(editMode)
 
   const handleChanges = (e) => {
     const newValue = e.target.type === 'checkbox' ? e.target.checked : e.target.value
@@ -26,7 +26,7 @@ const FormularioConductor = () => {
           name='nombre'
           type='text'
           error={error.nombre}
-          value={conductor.nombre}
+          value={editMode ? editConductor.nombre : conductor.nombre}
           event={handleChanges}
         />
         <Input
@@ -35,7 +35,7 @@ const FormularioConductor = () => {
           name='28402367'
           type='number'
           error={error.cedula}
-          value={conductor.cedula}
+          value={editMode ? editConductor.cedula : conductor.cedula}
           event={handleChanges}
         />
         <Input
@@ -44,7 +44,7 @@ const FormularioConductor = () => {
           name='22'
           type='number'
           error={error.edad}
-          value={conductor.edad}
+          value={editMode ? editConductor.edad : conductor.edad}
           event={handleChanges}
         />
         <Input
@@ -53,7 +53,7 @@ const FormularioConductor = () => {
           name='0424-1234567'
           type='number'
           error={error.telefono}
-          value={conductor.telefono}
+          value={editMode ? editConductor.telefono : conductor.telefono}
           event={handleChanges}
         />
         <Input
@@ -62,17 +62,17 @@ const FormularioConductor = () => {
           name='1.540 BsS'
           type='number'
           error={error.ganancia}
-          value={conductor.ganancia}
+          value={editMode ? editConductor.ganancia : conductor.ganancia}
           event={handleChanges}
         />
         <Input
           id='disponibilidad'
           label='Disponibilidad'
           type='checkbox'
-          value={conductor.disponibilidad}
+          value={editMode ? editConductor.disponibilidad : conductor.disponibilidad}
           event={handleChanges}
         />
-        <Button onSubmit={handleSubmit} />
+        <Button onSubmit={handleSubmit} editMode={editMode} />
       </div>
     </>
 
