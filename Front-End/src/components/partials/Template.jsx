@@ -2,6 +2,7 @@ import React from 'react'
 import { Outlet, Link } from 'react-router-dom'
 import './assets/css/header.css'
 import './assets/css/sidebar.css'
+import './assets/css/footer.css'
 import logo from './assets/images/logo.png'
 
 const Header = () => {
@@ -48,12 +49,24 @@ const Sidebar = () => {
   )
 }
 
+const Footer = () => {
+  return (
+    <footer className='footer'>
+      <div className='footer_container'>
+        <p>Multiservicios JoCeSanti C.A.</p>
+        <p>©Derechos reservados - Powered by NodeJS - 2021</p>
+      </div>
+    </footer>
+  )
+}
+
 const Template = () => {
   return (
     <>
       <Header />
       <Sidebar />
       <Outlet />
+      <Footer />
     </>
   )
 }
