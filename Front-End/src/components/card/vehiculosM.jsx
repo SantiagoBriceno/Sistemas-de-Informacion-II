@@ -1,29 +1,28 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios';
-
-
+import axios from 'axios'
+import viajesRealizados from './assets/viajesRealizados.webp'
+import conductoresVehiculo from './assets/Conductores.jpg'
 
 function MainCard () {
-  
-  const [vehiculos, setVehiculos] = useState([]);
-  const [viajes, setViajes] = useState([]);
+  const [vehiculos, setVehiculos] = useState([])
+  const [viajes, setViajes] = useState([])
 
   useEffect(() => {
     axios.get('http://localhost:3000/api/vehiculos/id/conductor')
-      .then((res)=> {
+      .then((res) => {
         setVehiculos(res.data.data)
       })
       .catch((err) => {
         console.log(err)
       })
-    
+
     axios.get('http://localhost:3000/api/viajes/id/vehiculoConductor')
-      .then((res)=> {
-				const viajes = res.data.data.map((viaje) => ({
-					...viaje,
-					fechaInicio: formatDate(viaje.fechaInicio),
-				}));
-				setViajes(viajes);
+      .then((res) => {
+        const viajes = res.data.data.map((viaje) => ({
+          ...viaje,
+          fechaInicio: formatDate(viaje.fechaInicio)
+        }))
+        setViajes(viajes)
       })
       .catch((err) => {
         console.log(err)
@@ -31,21 +30,21 @@ function MainCard () {
   }, [])
 
   const formatDate = (dateString) => {
-		const date = new Date(dateString);
-		const day = date.getDate().toString().padStart(2, "0");
-		const month = (date.getMonth() + 1).toString().padStart(2, "0");
-		const year = date.getFullYear().toString();
+    const date = new Date(dateString)
+    const day = date.getDate().toString().padStart(2, '0')
+    const month = (date.getMonth() + 1).toString().padStart(2, '0')
+    const year = date.getFullYear().toString()
 
-		return `${day}-${month}-${year}`;
-	};
-  
+    return `${day}-${month}-${year}`
+  }
 
   return (
     <div className='container'>
-      <div className='bg-gray-50 p-4'>
-        
+      <div className='rounded overflow-hidden shadow-lg p-4 bg-gray-100'>
+
         <div className='table-container'>
-          <h1 className='text-2xl font-bold mb-4'>Ultimos viajes</h1>
+          <img class='w-full pb-5' src={viajesRealizados} alt='Sunset in the mountains' style={{ borderRadius: 0 }} />
+          <h1 className='text-2xl font-bold mb-4 text-center'>Ultimos viajes</h1>
           <table className='table-auto w-full'>
             <thead>
               <tr>
@@ -112,9 +111,10 @@ function MainCard () {
         </div>
 
       </div>
-      <div className='bg-gray-50 p-4'>
+      <div className='rounded overflow-hidden shadow-lg p-4 bg-gray-100'>
         <div className='table-container'>
-          <h1 className='text-2xl font-bold mb-4'>Vehiculos con conductor asignado</h1>
+          <img class='w-full pb-5' src={conductoresVehiculo} alt='Sunset in the mountains' style={{ borderRadius: 0 }} />
+          <h1 className='text-2xl font-bold mb-4 text-center'>Vehiculos con conductor asignado</h1>
           <table className='table-auto w-full'>
             <thead>
               <tr>
