@@ -10,6 +10,12 @@ const getVehiculo = async (placa) => {
   return data
 }
 
+const getPlacas = async () => {
+  const [data] = await pool.query('SELECT placa FROM vehiculo')
+  console.log(data)
+  return data
+}
+
 const createVehiculo = async (vehiculo) => {
   const [data] = await pool.query('INSERT INTO vehiculo SET ?', [vehiculo])
   return data
@@ -25,10 +31,17 @@ const deleteVehiculo = async (placa) => {
   return data
 }
 
+const getVehiculoAndConductor = async () => {
+  const [data] = await pool.query('SELECT placa, marca, modelo, conductor.nombre FROM vehiculo INNER JOIN conductor ON cedulaConductor = conductor.cedula')
+  return data
+}
+
 export default {
   getVehiculos,
   getVehiculo,
   createVehiculo,
   editVehiculo,
-  deleteVehiculo
+  deleteVehiculo,
+  getPlacas,
+  getVehiculoAndConductor
 }
