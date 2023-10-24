@@ -6,12 +6,17 @@ import { ConductorView } from './components/view/Conductor.view.jsx'
 import { VehiculoView } from './components/view/Vehiculo.view.jsx'
 import { ViajeView } from './components/view/Viaje.view.jsx'
 import { GastoView } from './components/view/Gasto.view.jsx'
+import MainCard from './components/card/vehiculosM.jsx'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Template />,
     children: [
+      {
+        path: '/',
+        element: <MainCard />
+      },
       {
         path: '/conductor',
         element: <ConductorView />
