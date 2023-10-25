@@ -2,7 +2,7 @@ import React from 'react'
 import { useVehiculos } from '../../hooks/useVehiculos'
 import { useSortedEntity } from '../../hooks/useSortedEntity'
 
-function Vehiculos ({ setEditMode, setEditData }) {
+function Vehiculos ({ setEditMode, setEditData, visualizar, setVisualizar, setVisualizarData }) {
   const { vehiculos, deleteVehiculo } = useVehiculos()
   const { sortedEntity, handleSort, getSortIndicator } = useSortedEntity(vehiculos)
 
@@ -13,7 +13,11 @@ function Vehiculos ({ setEditMode, setEditData }) {
   }
 
   const handleView = (placa) => {
-
+    console.log(placa)
+    const newViewData = vehiculos.find((vehiculo) => vehiculo.placa === placa)
+    console.log(newViewData)
+    setVisualizarData(newViewData)
+    setVisualizar(true)
   }
 
   const handleEdit = (placa) => {
