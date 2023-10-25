@@ -12,6 +12,14 @@ function Vehiculos () {
     deleteVehiculo(vehiculo.placa)
   }
 
+  const handleView = (placa) => {
+    
+  }
+
+  const handleEdit = (placa) => {
+    
+  }
+
   return (
     <div className='bg-gray-50 p-4 ml-72'>
       <h1 className='text-2xl font-bold mb-4'>Vehiculos</h1>
@@ -106,8 +114,15 @@ function Vehiculos () {
                 >
                   Eliminar
                 </button>
-                <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
+                <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+                  onClick={() => handleEdit(vehiculo.placa)}
+                >
                   Editar
+                </button>
+                <button className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'
+                  onClick={() => handleView(vehiculo.placa)}
+                >
+                  Visualizar
                 </button>
               </td>
             </tr>
