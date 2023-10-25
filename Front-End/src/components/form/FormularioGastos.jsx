@@ -5,13 +5,21 @@ import './formulario.css'
 import { useSearchGastos } from '../../hooks/formularios/useSearchGastos.js'
 
 const FormularioGasto = () => {
-  const { gasto, setGasto, error, handleSubmit, placas } = useSearchGastos()
-  const handleChange = (e) => {
-    const newValue = e.target.type === 'checkbox' ? e.target.checked : e.target.value
-    setGasto({
-      ...gasto,
-      [e.target.id]: newValue
-    })
+  const { error, formData, handleBlur, handleChange, handleSubmit, placas, setFormField } = useSearchGastos()
+  console.log(formData)
+  const onSubmit = (e) => {
+    e.preventDefault()
+    if (error.placaVehiculo === '' && error.fecha === '' && error.descripcion === '' && error.costo === '' && formData.placaVehiculo !== '' && formData.fecha !== '' && formData.descripcion !== '' && formData.costo !== '') {
+      handleSubmit()
+      setFormField({
+        placaVehiculo: '',
+        fecha: '',
+        descripcion: '',
+        costo: ''
+      })
+    } else {
+      window.alert('Por favor, rellene todos los campos')
+    }
   }
   return (
     <>
@@ -24,9 +32,10 @@ const FormularioGasto = () => {
           name='Ej: 123ABC'
           type='select'
           error={error.placaVehiculo}
-          value={gasto.placaVehiculo}
-          event={handleChange}
+          value={formData.placaVehiculo}
+          onChange={handleChange}
           options={placas}
+          onBlur={handleBlur}
         />
         <Input
           id='fecha'
@@ -34,8 +43,9 @@ const FormularioGasto = () => {
           name='01/01/2021'
           type='date'
           error={error.fecha}
-          value={gasto.fecha}
-          event={handleChange}
+          value={formData.fecha}
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
         <Input
           id='descripcion'
@@ -43,8 +53,9 @@ const FormularioGasto = () => {
           name='Sunfire'
           type='text'
           error={error.descripcion}
-          value={gasto.descripcion}
-          event={handleChange}
+          value={formData.descripcion}
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
         <Input
           id='costo'
@@ -52,10 +63,11 @@ const FormularioGasto = () => {
           name='1.540 BsS'
           type='number'
           error={error.costo}
-          value={gasto.costo}
-          event={handleChange}
+          value={formData.costo}
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
-        <Button onSubmit={handleSubmit} />
+        <Button onSubmit={onSubmit} />
       </div>
     </>
 

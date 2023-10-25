@@ -1,97 +1,105 @@
-import { useContext, useEffect, useMemo, useState } from 'react'
-import { ViajeContext } from '../../context/viaje.jsx'
-import {
-  validatePlaca,
-  validateFecha,
-  validateNumber,
-  validateText
-} from '../utils/validationField.js'
-
-import {
-  createViaje,
-  getPlacas
-} from '../../service/Viajes.js'
+import { useState, useMemo } from 'react'
+import { placaValidation, valorNumericoValidation, fechaValidation, stringValidation } from '../utils/validationField.js'
+import { createViaje, getPlacas } from '../../service/Viajes.js'
 
 export const useSearchViajes = () => {
-  const { viaje, setViaje } = useContext(ViajeContext)
-  const [exito, setExito] = useState(false)
   const [placas, setPlacas] = useState([])
-  const [error, setError] = useState({
-    placaVehiculo: false,
-    fechaInicio: false,
-    fechaFin: false,
-    ubicacion: false,
-    distancia: false,
-    costo: false
+  const [formData, setFormField] = useState({
+    placaVehiculo: '',
+    fechaInicio: '',
+    fechaFin: '',
+    ubicacion: '',
+    distancia: '',
+    costo: ''
   })
 
-  useEffect(() => {
-    // VALIDACIONES DE CADA CAMPO
-    if (viaje.placaVehiculo === '' || !validatePlaca(viaje.placaVehiculo)) {
-      setError((error) => ({ ...error, placaVehiculo: true }))
-    } else {
-      setError((error) => ({ ...error, placaVehiculo: false }))
-    }
+  const [error, setError] = useState({
+    placaVehiculo: '',
+    fechaInicio: '',
+    fechaFin: '',
+    ubicacion: '',
+    distancia: '',
+    costo: ''
+  })
 
-    if (viaje.fechaInicio === '' || !validateFecha(viaje.fechaInicio)) {
-      setError((error) => ({ ...error, fechaInicio: true }))
-    } else {
-      setError((error) => ({ ...error, fechaInicio: false }))
-    }
-
-    if (viaje.fechaFin === '' || !validateFecha(viaje.fechaFin)) {
-      setError((error) => ({ ...error, fechaFin: true }))
-    } else {
-      setError((error) => ({ ...error, fechaFin: false }))
-    }
-
-    if (viaje.ubicacion === '' || !validateText(viaje.ubicacion)) {
-      setError((error) => ({ ...error, ubicacion: true }))
-    } else {
-      setError((error) => ({ ...error, ubicacion: false }))
-    }
-
-    if (viaje.distancia === '' || !validateNumber(viaje.distancia)) {
-      setError((error) => ({ ...error, distancia: true }))
-    } else {
-      setError((error) => ({ ...error, distancia: false }))
-    }
-
-    if (viaje.costo === '' || !validateNumber(viaje.costo)) {
-      setError((error) => ({ ...error, costo: true }))
-    } else {
-      setError((error) => ({ ...error, costo: false }))
-    }
-  }, [viaje])
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (
-      !error.placaVehiculo &&
-      !error.fecha &&
-      !error.descripcion &&
-      !error.costo
-    ) {
-      createViaje(viaje)
-        .then((res) => {
-          if (res.status === 200) {
-            setExito(true)
-            window.location.reload()
-          }
-          setViaje({
-            placaVehiculo: '',
-            fecha: '',
-            descripcion: '',
-            costo: ''
-          })
+  const handleBlur = (e) => {
+    switch (e.target.id) {
+      case 'placaVehiculo':
+        setError({
+          ...error,
+          placaVehiculo: placaValidation(e.target.value)
         })
-        .catch((err) => console.log(err))
+        break
+      case 'fechaInicio':
+        setError({
+          ...error,
+          fechaInicio: fechaValidation(e.target.value)
+        })
+        break
+      case 'fechaFin':
+        setError({
+          ...error,
+          fechaFin: fechaValidation(e.target.value)
+        })
+        break
+      case 'ubicacion':
+        setError({
+          ...error,
+          ubicacion: stringValidation(e.target.value)
+        })
+        break
+      case 'distancia':
+        setError({
+          ...error,
+          distancia: valorNumericoValidation(e.target.value)
+        })
+        break
+      case 'costo':
+        setError({
+          ...error,
+          costo: valorNumericoValidation(e.target.value)
+        })
+        break
+      default:
+        break
     }
+  }
+  const handleChange = (e) => {
+    setFormField({
+      ...formData,
+      [e.target.id]: e.target.value
+    })
   }
 
   useMemo(() => {
-    getPlacas().then((placas) => setPlacas(placas))
+    getPlacas().then((placa) => setPlacas(placa))
   }, [])
 
-  return { viaje, setViaje, error, handleSubmit, exito, placas }
+  const onSubmit = (e) => {
+    e.preventDefault()
+    const formValues = Object.values(formData)
+    const errorValues = Object.values(error)
+    const noError = errorValues.every((el) => el === '')
+    const noEmptyFields = formValues.every((el) => el !== '')
+
+    if (noError && noEmptyFields) {
+      handleSubmit()
+    } else {
+      console.log('Error')
+    }
+  }
+
+  const handleSubmit = () => {
+    createViaje(formData)
+    window.location.reload()
+  }
+
+  return {
+    formData,
+    error,
+    handleBlur,
+    handleChange,
+    onSubmit,
+    placas
+  }
 }

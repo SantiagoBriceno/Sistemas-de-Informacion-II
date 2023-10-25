@@ -1,87 +1,104 @@
-import { useContext, useEffect, useState } from 'react'
-import { VehiculoContext } from '../../context/Vehiculo.jsx'
-import {
-  validatePlaca,
-  validateNumber,
-  validateCedula
-} from '../utils/validationField.js'
-
-import {
-  createVehiculo
-} from '../../service/Vehiculos.js'
+import { useState, useMemo } from 'react'
+import { placaValidation, valorNumericoValidation, cedulaValidation, stringValidation } from '../utils/validationField.js'
+import { createVehiculo } from '../../service/Vehiculos.js'
+import { getCedulas } from '../../service/Conductores.js'
 
 export const useSearchVehiculos = () => {
-  const { vehiculo, setVehiculo } = useContext(VehiculoContext)
-  const [exito, setExito] = useState(false)
-  const [error, setError] = useState({
-    placa: false,
-    marca: false,
-    modelo: false,
-    capacidad: false,
-    cedulaConductor: false
+  const [cedula, setCedula] = useState([])
+  const [formData, setFormField] = useState({
+    placa: '',
+    marca: '',
+    modelo: '',
+    capacidad: '',
+    disponibilidad: '',
+    aire: '',
+    viajesRealizados: 0,
+    cedulaConductor: ''
   })
 
-  useEffect(() => {
-    // VALIDACIONES DE CADA CAMPO
-    if (vehiculo.placa === '' || !validatePlaca(vehiculo.placa)) {
-      setError((error) => ({ ...error, placa: true }))
-    } else {
-      setError((error) => ({ ...error, placa: false }))
-    }
+  const [error, setError] = useState({
+    placa: '',
+    marca: '',
+    modelo: '',
+    capacidad: '',
+    cedulaConductor: ''
+  })
 
-    if (vehiculo.marca === '' || vehiculo.marca.length < 2) {
-      setError((error) => ({ ...error, marca: true }))
-    } else {
-      setError((error) => ({ ...error, marca: false }))
-    }
-
-    if (vehiculo.modelo === '' || vehiculo.modelo.length < 2) {
-      setError((error) => ({ ...error, modelo: true }))
-    } else {
-      setError((error) => ({ ...error, modelo: false }))
-    }
-
-    if (vehiculo.capacidad === '' || !validateNumber(vehiculo.capacidad)) {
-      setError((error) => ({ ...error, capacidad: true }))
-    } else {
-      setError((error) => ({ ...error, capacidad: false }))
-    }
-
-    if (vehiculo.cedulaConductor === '' || !validateCedula(vehiculo.cedulaConductor)) {
-      setError((error) => ({ ...error, cedulaConductor: true }))
-    } else {
-      setError((error) => ({ ...error, cedulaConductor: false }))
-    }
-  }, [vehiculo])
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (
-      !error.placa &&
-      !error.marca &&
-      !error.modelo &&
-      !error.capacidad &&
-      !error.cedulaConductor
-    ) {
-      createVehiculo(vehiculo)
-        .then((res) => {
-          if (res.status === 200) {
-            setExito(true)
-            window.location.reload()
-          }
-          setVehiculo({
-            placa: '',
-            marca: '',
-            modelo: '',
-            capacidad: '',
-            disponibilidad: '',
-            aire: '',
-            viajesRealizados: '',
-            cedulaConductor: ''
-          })
+  const handleBlur = (e) => {
+    switch (e.target.id) {
+      case 'placa':
+        setError({
+          ...error,
+          placa: placaValidation(e.target.value)
         })
-        .catch((err) => console.log(err))
+        break
+      case 'marca':
+        setError({
+          ...error,
+          marca: stringValidation(e.target.value)
+        })
+        break
+      case 'modelo':
+        setError({
+          ...error,
+          modelo: stringValidation(e.target.value)
+        })
+        break
+      case 'capacidad':
+        setError({
+          ...error,
+          capacidad: valorNumericoValidation(e.target.value)
+        })
+        break
+      case 'cedulaConductor':
+        setError({
+          ...error,
+          cedulaConductor: cedulaValidation(e.target.value)
+        })
+        break
+      default:
+        break
     }
   }
-  return { vehiculo, setVehiculo, error, handleSubmit, exito }
+
+  const handleChange = (e) => {
+    const newValue = e.target.type === 'checkbox' ? e.target.checked : e.target.value
+    setFormField({
+      ...formData,
+      [e.target.id]: newValue
+    })
+  }
+
+  const onSubmit = (e) => {
+    e.preventDefault()
+    const formValues = Object.values(formData)
+    const errorValues = Object.values(error)
+    const noError = errorValues.every((el) => el === '')
+    const noEmptyFields = formValues.every((el) => el !== '')
+
+    if (noError && noEmptyFields) {
+      handleSubmit()
+    } else {
+      console.log('Error')
+    }
+  }
+
+  useMemo(() => {
+    getCedulas().then((cedula) => setCedula(cedula))
+  }, [])
+
+  const handleSubmit = () => {
+    createVehiculo(formData)
+  }
+
+  return {
+    formData,
+    error,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    onSubmit,
+    setFormField,
+    cedula
+  }
 }

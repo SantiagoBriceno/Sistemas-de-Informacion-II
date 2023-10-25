@@ -6,27 +6,21 @@ import './formulario.css'
 import { useSearchViajes } from '../../hooks/formularios/useSearchViajes.js'
 
 const FormularioViajes = () => {
-  const { viaje, setViaje, error, handleSubmit, placas } = useSearchViajes()
-  const handleChange = (e) => {
-    const newValue = e.target.type === 'checkbox' ? e.target.checked : e.target.value
-    setViaje({
-      ...viaje,
-      [e.target.id]: newValue
-    })
-  }
+  const { placas, error, formData, handleBlur, handleChange, onSubmit } = useSearchViajes()
   return (
     <>
       <div className='container'>
-        <h1>Formulario de viaje</h1>
+        <h1>Formulario de formData</h1>
         <br />
         <Input
           id='placaVehiculo'
-          label='Identificador del viaje'
+          label='Identificador del formData'
           name='123456'
           type='select'
           error={error.placaVehiculo}
-          value={viaje.placaVehiculo}
-          event={handleChange}
+          value={formData.placaVehiculo}
+          onchange={handleChange}
+          onBlur={handleBlur}
           options={placas}
         />
         <Input
@@ -35,8 +29,9 @@ const FormularioViajes = () => {
           name='01/01/2021'
           type='date'
           error={error.fechaInicio}
-          value={viaje.fechaInicio}
-          event={handleChange}
+          value={formData.fechaInicio}
+          onchange={handleChange}
+          onBlur={handleBlur}
         />
         <Input
           id='fechaFin'
@@ -44,8 +39,9 @@ const FormularioViajes = () => {
           name='01/03/2021'
           type='date'
           error={error.fechaFin}
-          value={viaje.fechaFin}
-          event={handleChange}
+          value={formData.fechaFin}
+          onchange={handleChange}
+          onBlur={handleBlur}
         />
         <Input
           id='ubicacion'
@@ -53,29 +49,32 @@ const FormularioViajes = () => {
           name='Mañongo, Naguanagua'
           type='text'
           error={error.ubicacion}
-          value={viaje.ubicacion}
-          event={handleChange}
+          value={formData.ubicacion}
+          onchange={handleChange}
+          onBlur={handleBlur}
         />
         <Input
           id='distancia'
-          label='Distancia recorrida en el viaje'
+          label='Distancia recorrida en el formData'
           name='1.324 Km'
           type='number'
           error={error.distancia}
-          value={viaje.distancia}
-          event={handleChange}
+          value={formData.distancia}
+          onchange={handleChange}
+          onBlur={handleBlur}
         />
         <Input
           id='costo'
-          label='Costo del viaje'
+          label='Costo del formData'
           name='1.540 BsS'
           type='number'
           error={error.costo}
-          value={viaje.costo}
-          event={handleChange}
+          value={formData.costo}
+          onchange={handleChange}
+          onBlur={handleBlur}
 
         />
-        <Button onSubmit={handleSubmit} />
+        <Button onSubmit={onSubmit} />
       </div>
     </>
 

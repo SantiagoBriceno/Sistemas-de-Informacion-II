@@ -2,13 +2,19 @@ import React from 'react'
 import { useConductores } from '../../hooks/useConductores'
 import { useSortedEntity } from '../../hooks/useSortedEntity'
 
-function Conductores () {
+function Conductores ({ setEdit, edit, setEditData }) {
   const { conductores, deleteConductor } = useConductores()
   const { sortedEntity, handleSort, getSortIndicator } = useSortedEntity(conductores)
   const sortedConductores = sortedEntity
 
   const handleDelete = (conductor) => {
     deleteConductor(conductor.cedula)
+  }
+
+  const toggleEdit = (e) => {
+    setEdit(!edit)
+    const conductorToEdit = conductores.find((conductor) => conductor.cedula === e.target.id)
+    setEditData(conductorToEdit)
   }
 
   return (
@@ -97,7 +103,7 @@ function Conductores () {
                 >
                   Eliminar
                 </button>
-                <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
+                <button id={conductor.cedula} onClick={toggleEdit} className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
                   Editar
                 </button>
               </td>

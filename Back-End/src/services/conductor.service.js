@@ -25,10 +25,16 @@ const deleteConductor = async (cedula) => {
   return data
 }
 
+const getCedulas = async () => {
+  const [data] = await pool.query('SELECT cedula FROM conductor')
+  return data
+}
+
 export default {
   getConductores,
   getConductor,
   createConductor,
   editConductor,
-  deleteConductor
+  deleteConductor,
+  getCedulas
 }
