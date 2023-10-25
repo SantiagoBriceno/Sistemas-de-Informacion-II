@@ -13,7 +13,7 @@ function Vehiculos () {
   }
 
   const handleView = (placa) => {
-    
+
   }
 
   const handleEdit = (placa) => {
@@ -114,12 +114,14 @@ function Vehiculos () {
                 >
                   Eliminar
                 </button>
-                <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4'
+                <button
+                  className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4'
                   onClick={() => handleEdit(vehiculo.placa)}
                 >
                   Editar
                 </button>
-                <button className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'
+                <button
+                  className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'
                   onClick={() => handleView(vehiculo.placa)}
                 >
                   Visualizar

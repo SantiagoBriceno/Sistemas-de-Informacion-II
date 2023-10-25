@@ -16,7 +16,7 @@ function Viajes () {
     <div className='bg-gray-50 p-4 ml-72'>
       <h1 className='text-2xl font-bold mb-4'>Viajes</h1>
       <table className='table-auto w-full'>
-        <thead>
+        <thead></thead>
           <tr>
             <th
               className='px-4 py-2 text-center cursor-pointer'
