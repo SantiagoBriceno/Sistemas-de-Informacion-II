@@ -12,3 +12,7 @@
   font-weight: 700;
   font-size: large;
 }
+
+.container button{
+  margin-bottom: 20px;
+}
