@@ -4,15 +4,23 @@ import './formulario.css'
 import { useSearchConductor } from '../../hooks/formularios/useSearchConductor.js'
 
 const FormularioConductor = ({ editMode, editConductor }) => {
-  const { conductor, setConductor, error, handleSubmit } = useSearchConductor()
-  console.log(editMode)
+  const { formData, setFormField, error, handleChanges, handleBlur, handleSubmit } = useSearchConductor()
 
-  const handleChanges = (e) => {
-    const newValue = e.target.type === 'checkbox' ? e.target.checked : e.target.value
-    setConductor({
-      ...conductor,
-      [e.target.id]: newValue
-    })
+  const onSubmit = (e) => {
+    e.preventDefault()
+    if (error.nombre === '' && error.cedula === '' && error.edad === '' && error.telefono === '' && error.ganancia === '' && formData.nombre !== '' && formData.cedula !== '' && formData.edad !== '' && formData.telefono !== '' && formData.ganancia !== '') {
+      handleSubmit()
+      setFormField({
+        nombre: '',
+        cedula: '',
+        edad: '',
+        telefono: '',
+        ganancia: '',
+        disponibilidad: false
+      })
+    } else {
+      window.alert('Por favor, rellene todos los campos')
+    }
   }
 
   return (
@@ -26,8 +34,9 @@ const FormularioConductor = ({ editMode, editConductor }) => {
           name='nombre'
           type='text'
           error={error.nombre}
-          value={editMode ? editConductor.nombre : conductor.nombre}
-          event={handleChanges}
+          value={formData.nombre}
+          onChange={handleChanges}
+          onBlur={handleBlur}
         />
         <Input
           id='cedula'
@@ -35,8 +44,9 @@ const FormularioConductor = ({ editMode, editConductor }) => {
           name='28402367'
           type='number'
           error={error.cedula}
-          value={editMode ? editConductor.cedula : conductor.cedula}
-          event={handleChanges}
+          value={formData.cedula}
+          onChange={handleChanges}
+          onBlur={handleBlur}
         />
         <Input
           id='edad'
@@ -44,8 +54,9 @@ const FormularioConductor = ({ editMode, editConductor }) => {
           name='22'
           type='number'
           error={error.edad}
-          value={editMode ? editConductor.edad : conductor.edad}
-          event={handleChanges}
+          value={formData.edad}
+          onChange={handleChanges}
+          onBlur={handleBlur}
         />
         <Input
           id='telefono'
@@ -53,8 +64,9 @@ const FormularioConductor = ({ editMode, editConductor }) => {
           name='0424-1234567'
           type='number'
           error={error.telefono}
-          value={editMode ? editConductor.telefono : conductor.telefono}
-          event={handleChanges}
+          value={formData.telefono}
+          onChange={handleChanges}
+          onBlur={handleBlur}
         />
         <Input
           id='ganancia'
@@ -62,17 +74,18 @@ const FormularioConductor = ({ editMode, editConductor }) => {
           name='1.540 BsS'
           type='number'
           error={error.ganancia}
-          value={editMode ? editConductor.ganancia : conductor.ganancia}
-          event={handleChanges}
+          value={formData.ganancia}
+          onChange={handleChanges}
+          onBlur={handleBlur}
         />
         <Input
           id='disponibilidad'
           label='Disponibilidad'
           type='checkbox'
-          value={editMode ? editConductor.disponibilidad : conductor.disponibilidad}
-          event={handleChanges}
+          value={formData.disponibilidad}
+          onChange={handleChanges}
         />
-        <Button onSubmit={handleSubmit} editMode={editMode} />
+        <Button onSubmit={onSubmit} editMode={editMode} />
       </div>
     </>
 

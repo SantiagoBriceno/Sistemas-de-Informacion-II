@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { getConductor, getConductores, createConductor, editConductor, deleteConductor } from '../controller/conductor.controllers.js'
+import { getConductor, getConductores, createConductor, editConductor, deleteConductor, getCedulas } from '../controller/conductor.controllers.js'
 
 const router = Router()
 
@@ -16,5 +16,7 @@ router.patch('/:cedula', editConductor)
 
 // RUTA PARA ELIMINAR UN CHOFER DE LA BASE DE DATOS
 router.delete('/:cedula', deleteConductor)
+
+router.get('/id/cedulas', getCedulas)
 
 export default router

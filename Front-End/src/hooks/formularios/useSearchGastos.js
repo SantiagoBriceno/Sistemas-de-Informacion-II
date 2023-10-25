@@ -1,86 +1,78 @@
-import { useContext, useEffect, useState } from 'react'
-import { GastoContext } from '../../context/Gasto.jsx'
-import {
-  validatePlaca,
-  validateFecha,
-  validateNumber
-} from '../utils/validationField.js'
-
-import {
-  createGasto
-} from '../../service/Gastos.js'
-
-import {
-  getPlacas
-} from '../../service/Viajes.js'
+import { useState, useMemo } from 'react'
+import { placaValidation, fechaValidation, descripcionValidation, valorNumericoValidation } from '../utils/validationField.js'
+import { createGasto } from '../../service/Gastos.js'
+import { getPlacas } from '../../service/Viajes.js'
 
 export const useSearchGastos = () => {
-  const { gasto, setGasto } = useContext(GastoContext)
   const [placas, setPlacas] = useState([])
-  const [exito, setExito] = useState(false)
-  const [error, setError] = useState({
-    placaVehiculo: false,
-    fecha: false,
-    descripcion: false,
-    costo: false
+  const [formData, setFormField] = useState({
+    placaVehiculo: '',
+    fecha: '',
+    descripcion: '',
+    costo: ''
   })
 
-  useEffect(() => {
-    // VALIDACIONES DE CADA CAMPO
-    if (gasto.placaVehiculo === '' || !validatePlaca(gasto.placaVehiculo)) {
-      setError((error) => ({ ...error, placaVehiculo: true }))
-    } else {
-      setError((error) => ({ ...error, placaVehiculo: false }))
-    }
+  const [error, setError] = useState({
+    placaVehiculo: '',
+    fecha: '',
+    descripcion: '',
+    costo: ''
+  })
 
-    if (gasto.fecha === '' || !validateFecha(gasto.fecha)) {
-      setError((error) => ({ ...error, fecha: true }))
-    } else {
-      setError((error) => ({ ...error, fecha: false }))
-    }
-
-    if (gasto.descripcion === '' || gasto.descripcion.length < 5) {
-      setError((error) => ({ ...error, descripcion: true }))
-    } else {
-      setError((error) => ({ ...error, descripcion: false }))
-    }
-
-    if (gasto.costo === '' || !validateNumber(gasto.costo)) {
-      setError((error) => ({ ...error, costo: true }))
-    } else {
-      setError((error) => ({ ...error, costo: false }))
-    }
-  }, [gasto])
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (
-      !error.placaVehiculo &&
-      !error.fecha &&
-      !error.descripcion &&
-      !error.costo
-    ) {
-      createGasto(gasto)
-        .then((res) => {
-          if (res.status === 200) {
-            setExito(true)
-            window.location.reload()
-          }
-          setGasto({
-            placaVehiculo: '',
-            fecha: '',
-            descripcion: '',
-            costo: ''
-          })
+  const handleBlur = (e) => {
+    switch (e.target.id) {
+      case 'placaVehiculo':
+        setError({
+          ...error,
+          placaVehiculo: placaValidation(e.target.value)
         })
-        .catch((err) => console.log(err))
+        break
+      case 'fecha':
+        setError({
+          ...error,
+          fecha: fechaValidation(e.target.value)
+        })
+        break
+      case 'descripcion':
+        setError({
+          ...error,
+          descripcion: descripcionValidation(e.target.value)
+        })
+        break
+      case 'costo':
+        setError({
+          ...error,
+          costo: valorNumericoValidation(e.target.value)
+        })
+        break
+      default:
+        break
     }
   }
 
-  useEffect(() => {
-    getPlacas().then((res) => {
-      setPlacas(res)
+  const handleChange = (e) => {
+    setFormField({
+      ...formData,
+      [e.target.id]: e.target.value
     })
+  }
+
+  const handleSubmit = (e) => {
+    createGasto(formData)
+    window.location.reload()
+  }
+
+  useMemo(() => {
+    getPlacas().then((placa) => setPlacas(placa))
   }, [])
-  return { gasto, setGasto, error, handleSubmit, exito, placas }
+
+  return {
+    formData,
+    error,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    placas,
+    setFormField
+  }
 }

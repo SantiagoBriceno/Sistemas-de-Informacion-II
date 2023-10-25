@@ -1,7 +1,7 @@
 import React from 'react'
 import './css/input.css'
 
-const Input = ({ label, type, name, error, value, event, id, options }) => {
+const Input = ({ label, type, name, error, value, onChange, onBlur, id, options }) => {
   return (
     <div className='form-group'>
       <label>{label}</label>
@@ -12,18 +12,20 @@ const Input = ({ label, type, name, error, value, event, id, options }) => {
             type={type}
             placeholder={name}
             value={value}
-            onChange={event}
+            onChange={onChange}
+            onBlur={onBlur}
           />
         : <select
             id={id}
             className='form-control'
-            onChange={event}
+            onChange={onChange}
+            onBlur={onBlur}
           >
           {options.map((option) => <option key={option} value={option}>{option}</option>)}
           <option selected disabled>{name}</option>
           </select>}
 
-      {error === true ? <p className='text-red-500 text-xs italic'>'Por favor ingresa valores válidos'</p> : null}
+      {error !== '' ? <p className='text-red-500 text-xs italic'>{error}</p> : null}
     </div>
   )
 }

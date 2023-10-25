@@ -109,3 +109,26 @@ export const deleteConductor = async (req, res) => {
     })
   }
 }
+
+export const getCedulas = async (req, res) => {
+  try {
+    const cedulas = await service.getCedulas()
+    const cedulasArray = cedulas.map((cedula) => cedula.cedula)
+    if (cedulas) {
+      res.send({
+        status: 200,
+        data: cedulasArray
+      })
+    } else {
+      res.status(404).send({
+        status: 404,
+        message: 'No se encontraron cedulas'
+      })
+    }
+  } catch (e) {
+    res.status(500).send({
+      status: 'ERROR',
+      message: 'OPS! ERROR AL OBTENER LAS CEDULAS'
+    })
+  }
+}

@@ -6,14 +6,8 @@ import './formulario.css'
 import { useSearchVehiculos } from '../../hooks/formularios/useSearchVehiculos.js'
 
 const FormularioVehiculo = () => {
-  const { vehiculo, setVehiculo, error, handleSubmit } = useSearchVehiculos()
-  const handleChange = (e) => {
-    const newValue = e.target.type === 'checkbox' ? e.target.checked : e.target.value
-    setVehiculo({
-      ...vehiculo,
-      [e.target.id]: newValue
-    })
-  }
+  const { cedula, error, formData, handleBlur, handleChange, onSubmit } = useSearchVehiculos()
+
   return (
     <>
       <div className='container'>
@@ -25,8 +19,9 @@ const FormularioVehiculo = () => {
           name='ABC-123'
           type='text'
           error={error.placa}
-          value={vehiculo.placa}
-          event={handleChange}
+          value={formData.placa}
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
         <Input
           id='marca'
@@ -34,49 +29,58 @@ const FormularioVehiculo = () => {
           name='Chevrolet'
           type='text'
           error={error.marca}
-          value={vehiculo.marca}
-          event={handleChange}
+          value={formData.marca}
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
         <Input
+          id='modelo'
           label='Modelo del vehículo'
           name='Sunfire'
           type='text'
           error={error.modelo}
-          value={vehiculo.modelo}
-          event={handleChange}
+          value={formData.modelo}
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
         <Input
+          id='capacidad'
           label='Capacidad del vehículo'
           name='5'
           type='number'
           error={error.capacidad}
-          value={vehiculo.capacidad}
-          event={handleChange}
+          value={formData.capacidad}
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
         <Input
           id='disponibilidad'
           label='¿Se encuentra disponible?'
           type='checkbox'
-          value={vehiculo.disponibilidad}
-          event={handleChange}
+          value={formData.disponibilidad}
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
         <Input
           id='aire'
           label='¿Posee aire acondicionado?'
           type='checkbox'
-          value={vehiculo.aire}
-          event={handleChange}
+          value={formData.aire}
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
         <Input
           id='cedulaConductor'
           label='Cédula de identidad'
-          name='28402367'
-          type='number'
+          name='9000000'
+          type='select'
+          options={cedula}
           error={error.cedulaConductor}
-          value={vehiculo.cedulaConductor}
-          event={handleChange}
+          value={formData.cedulaConductor}
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
-        <Button onSubmit={handleSubmit} />
+        <Button onSubmit={onSubmit} />
       </div>
     </>
 
