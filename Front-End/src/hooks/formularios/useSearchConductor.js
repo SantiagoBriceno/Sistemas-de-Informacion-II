@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { nameValidation, cedulaValidation, edadValidation, telefonoValidation, gananciaValidation } from '../utils/validationField'
-import { createConductor } from '../../service/Conductores.js'
+import { createConductor, editConductor } from '../../service/Conductores.js'
 
-export const useSearchConductor = () => {
+export const useSearchConductor = (editMode) => {
   const [formData, setFormField] = useState({
     nombre: '',
     cedula: '',
@@ -66,12 +66,30 @@ export const useSearchConductor = () => {
     })
   }
 
+  const onSubmit = (e) => {
+    const formValues = Object.values(formData)
+    const errorValues = Object.values(error)
+    const noError = errorValues.every((el) => el === '')
+    const noEmptyFields = formValues.every((el) => el !== '')
+
+    if (noError && noEmptyFields) {
+      handleSubmit()
+    } else {
+      console.log('Error')
+    }
+  }
   const handleSubmit = () => {
-    createConductor(formData)
+    console.log(formData)
+    !editMode
+      ? createConductor(formData)
+      : editConductor(formData.cedula, formData)
+
+    window.location.reload()
   }
 
   return {
     formData,
+    onSubmit,
     error,
     handleBlur,
     handleChanges,

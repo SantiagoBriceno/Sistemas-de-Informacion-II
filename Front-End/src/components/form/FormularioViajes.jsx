@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Input from './components/Input'
 import Button from './components/Button'
 import './formulario.css'
 
 import { useSearchViajes } from '../../hooks/formularios/useSearchViajes.js'
 
-const FormularioViajes = () => {
-  const { placas, error, formData, handleBlur, handleChange, onSubmit } = useSearchViajes()
+const FormularioViajes = ({ editMode, setEditMode, editData }) => {
+  const { placas, error, formData, handleBlur, handleChange, onSubmit, setFormField } = useSearchViajes()
+  useEffect(() => {
+    if (editMode) {
+      setFormField(editData)
+    }
+  }, [editMode])
   return (
     <>
       <div className='container'>
@@ -19,7 +24,7 @@ const FormularioViajes = () => {
           type='select'
           error={error.placaVehiculo}
           value={formData.placaVehiculo}
-          onchange={handleChange}
+          onChange={handleChange}
           onBlur={handleBlur}
           options={placas}
         />
@@ -30,7 +35,7 @@ const FormularioViajes = () => {
           type='date'
           error={error.fechaInicio}
           value={formData.fechaInicio}
-          onchange={handleChange}
+          onChange={handleChange}
           onBlur={handleBlur}
         />
         <Input
@@ -40,7 +45,7 @@ const FormularioViajes = () => {
           type='date'
           error={error.fechaFin}
           value={formData.fechaFin}
-          onchange={handleChange}
+          onChange={handleChange}
           onBlur={handleBlur}
         />
         <Input
@@ -50,7 +55,7 @@ const FormularioViajes = () => {
           type='text'
           error={error.ubicacion}
           value={formData.ubicacion}
-          onchange={handleChange}
+          onChange={handleChange}
           onBlur={handleBlur}
         />
         <Input
@@ -60,7 +65,7 @@ const FormularioViajes = () => {
           type='number'
           error={error.distancia}
           value={formData.distancia}
-          onchange={handleChange}
+          onChange={handleChange}
           onBlur={handleBlur}
         />
         <Input
@@ -70,11 +75,11 @@ const FormularioViajes = () => {
           type='number'
           error={error.costo}
           value={formData.costo}
-          onchange={handleChange}
+          onChange={handleChange}
           onBlur={handleBlur}
 
         />
-        <Button onSubmit={onSubmit} />
+        {editMode ? (<Button onSubmit={onSubmit} text='Guardar cambios' />) : (<Button onSubmit={onSubmit} text='Registrar' />)}
       </div>
     </>
 

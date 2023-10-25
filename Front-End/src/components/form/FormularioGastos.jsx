@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Input from './components/Input'
 import Button from './components/Button'
 import './formulario.css'
 import { useSearchGastos } from '../../hooks/formularios/useSearchGastos.js'
 
-const FormularioGasto = () => {
-  const { error, formData, handleBlur, handleChange, handleSubmit, placas, setFormField } = useSearchGastos()
-  console.log(formData)
+const FormularioGasto = ({ editMode, editData }) => {
+  const { error, formData, handleBlur, handleChange, handleSubmit, placas, setFormField } = useSearchGastos(editMode)
+
+  useEffect(() => {
+    if (editMode) {
+      setFormField(editData)
+    }
+  }, [editMode])
+
   const onSubmit = (e) => {
     e.preventDefault()
     if (error.placaVehiculo === '' && error.fecha === '' && error.descripcion === '' && error.costo === '' && formData.placaVehiculo !== '' && formData.fecha !== '' && formData.descripcion !== '' && formData.costo !== '') {
@@ -67,7 +73,7 @@ const FormularioGasto = () => {
           onChange={handleChange}
           onBlur={handleBlur}
         />
-        <Button onSubmit={onSubmit} />
+        {editMode ? (<Button onSubmit={onSubmit} text='Guardar cambios' />) : (<Button onSubmit={onSubmit} text='Registrar' />)}
       </div>
     </>
 

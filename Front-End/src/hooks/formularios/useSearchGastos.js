@@ -1,9 +1,9 @@
 import { useState, useMemo } from 'react'
 import { placaValidation, fechaValidation, descripcionValidation, valorNumericoValidation } from '../utils/validationField.js'
-import { createGasto } from '../../service/Gastos.js'
+import { createGasto, editGasto } from '../../service/Gastos.js'
 import { getPlacas } from '../../service/Viajes.js'
 
-export const useSearchGastos = () => {
+export const useSearchGastos = (editMode) => {
   const [placas, setPlacas] = useState([])
   const [formData, setFormField] = useState({
     placaVehiculo: '',
@@ -11,6 +11,8 @@ export const useSearchGastos = () => {
     descripcion: '',
     costo: ''
   })
+
+  console.log(formData)
 
   const [error, setError] = useState({
     placaVehiculo: '',
@@ -58,7 +60,10 @@ export const useSearchGastos = () => {
   }
 
   const handleSubmit = (e) => {
-    createGasto(formData)
+    console.log(formData)
+    !editMode
+      ? createGasto(formData)
+      : editGasto(formData)
     window.location.reload()
   }
 

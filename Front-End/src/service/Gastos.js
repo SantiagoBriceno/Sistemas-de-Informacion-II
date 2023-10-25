@@ -29,3 +29,7 @@ export const deleteGasto = (id) => {
 export const createGasto = (gasto) => {
   return axios.post(GET_ALL_GASTOS, gasto)
 }
+
+export const editGasto = (gasto) => {
+  return axios.patch(`${GET_ALL_GASTOS}/${gasto.id}`, gasto)
+}

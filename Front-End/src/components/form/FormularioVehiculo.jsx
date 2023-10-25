@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Input from './components/Input'
 import Button from './components/Button'
 import './formulario.css'
 
 import { useSearchVehiculos } from '../../hooks/formularios/useSearchVehiculos.js'
 
-const FormularioVehiculo = () => {
-  const { cedula, error, formData, handleBlur, handleChange, onSubmit } = useSearchVehiculos()
-
+const FormularioVehiculo = ({ editMode, setEditMode, editData }) => {
+  const { cedula, error, formData, handleBlur, handleChange, onSubmit, setFormField } = useSearchVehiculos(editMode)
+  useEffect(() => {
+    if (editMode) {
+      setFormField(editData)
+    }
+  }, [editMode])
   return (
     <>
       <div className='container'>
@@ -80,7 +84,7 @@ const FormularioVehiculo = () => {
           onChange={handleChange}
           onBlur={handleBlur}
         />
-        <Button onSubmit={onSubmit} />
+        {editMode ? (<Button onSubmit={onSubmit} text='Guardar cambios' />) : (<Button onSubmit={onSubmit} text='Registrar' />)}
       </div>
     </>
 

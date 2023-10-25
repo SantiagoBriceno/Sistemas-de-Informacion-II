@@ -2,26 +2,16 @@ import Input from './components/Input'
 import Button from './components/Button'
 import './formulario.css'
 import { useSearchConductor } from '../../hooks/formularios/useSearchConductor.js'
+import { useEffect } from 'react'
 
-const FormularioConductor = ({ editMode, editConductor }) => {
-  const { formData, setFormField, error, handleChanges, handleBlur, handleSubmit } = useSearchConductor()
+const FormularioConductor = ({ editMode, editData }) => {
+  const { formData, setFormField, error, handleChanges, handleBlur, onSubmit } = useSearchConductor(editMode)
 
-  const onSubmit = (e) => {
-    e.preventDefault()
-    if (error.nombre === '' && error.cedula === '' && error.edad === '' && error.telefono === '' && error.ganancia === '' && formData.nombre !== '' && formData.cedula !== '' && formData.edad !== '' && formData.telefono !== '' && formData.ganancia !== '') {
-      handleSubmit()
-      setFormField({
-        nombre: '',
-        cedula: '',
-        edad: '',
-        telefono: '',
-        ganancia: '',
-        disponibilidad: false
-      })
-    } else {
-      window.alert('Por favor, rellene todos los campos')
+  useEffect(() => {
+    if (editMode) {
+      setFormField(editData)
     }
-  }
+  }, [editMode])
 
   return (
     <>
@@ -85,7 +75,7 @@ const FormularioConductor = ({ editMode, editConductor }) => {
           value={formData.disponibilidad}
           onChange={handleChanges}
         />
-        <Button onSubmit={onSubmit} editMode={editMode} />
+        {editMode ? (<Button text='Guardar Cambios' onSubmit={onSubmit} />) : (<Button text='Registrar' onSubmit={onSubmit} />)}
       </div>
     </>
 

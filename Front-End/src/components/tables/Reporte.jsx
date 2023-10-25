@@ -1,7 +1,7 @@
 function Reporte () {
-  handleDelete = (reporte) => {}
+  const handleDelete = (reporte) => {}
 
-  handleEdit = (reporte) => {}
+  const handleEdit = (reporte) => {}
   return (
     <div className='bg-gray-50 p-4 ml-72'>
       <h1 className='text-2xl font-bold mb-4'>Reportes</h1>
@@ -26,7 +26,7 @@ function Reporte () {
           </tr>
         </thead>
         <tbody>
-          {reportes.map((reporte) => (
+          {reporte.map((reporte) => (
             <tr key={reporte.placa} className='hover:bg-gray-200'>
               <td className='border px-4 py-2 text-center'>
                 {reporte.placa}

@@ -1,8 +1,8 @@
 import { useState, useMemo } from 'react'
 import { placaValidation, valorNumericoValidation, fechaValidation, stringValidation } from '../utils/validationField.js'
-import { createViaje, getPlacas } from '../../service/Viajes.js'
+import { createViaje, getPlacas, editViaje } from '../../service/Viajes.js'
 
-export const useSearchViajes = () => {
+export const useSearchViajes = (editMode) => {
   const [placas, setPlacas] = useState([])
   const [formData, setFormField] = useState({
     placaVehiculo: '',
@@ -90,7 +90,7 @@ export const useSearchViajes = () => {
   }
 
   const handleSubmit = () => {
-    createViaje(formData)
+    !editMode ? createViaje(formData) : editViaje(formData.id, formData)
     window.location.reload()
   }
 
@@ -100,6 +100,7 @@ export const useSearchViajes = () => {
     handleBlur,
     handleChange,
     onSubmit,
-    placas
+    placas,
+    setFormField
   }
 }

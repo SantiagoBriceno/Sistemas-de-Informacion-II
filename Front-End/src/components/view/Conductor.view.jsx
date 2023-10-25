@@ -4,13 +4,13 @@ import FormularioConductor from '../form/FormularioConductor.jsx'
 import { ConductorProvider } from '../../context/Conductor.jsx'
 
 export const ConductorView = () => {
-  const [edit, setEdit] = useState(false)
-  const [editConductor, setEditConductor] = useState({})
+  const [editMode, setEditMode] = useState(false)
+  const [editData, setEditData] = useState('')
   return (
     <>
       <ConductorProvider>
-        <FormularioConductor editMode={edit} editConductor={editConductor} />
-        <Conductores setEdit={setEdit} edit={edit} setEditData={setEditConductor} />
+        <FormularioConductor editMode={editMode} editData={editData} />
+        <Conductores setEditMode={setEditMode} editMode={editMode} setEditData={setEditData} />
       </ConductorProvider>
 
     </>

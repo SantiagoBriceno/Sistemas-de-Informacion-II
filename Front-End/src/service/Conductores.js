@@ -27,3 +27,8 @@ export const createConductor = (conductor) => {
   console.log(conductor)
   return axios.post(GET_ALL_CONDUCTORES, conductor)
 }
+
+export const editConductor = (cedula, conductor) => {
+  console.log(conductor)
+  return axios.patch(`${GET_ALL_CONDUCTORES}/${cedula}`, conductor)
+}

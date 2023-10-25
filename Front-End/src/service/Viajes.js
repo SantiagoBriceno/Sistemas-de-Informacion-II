@@ -35,3 +35,7 @@ export const getPlacas = () => {
     .then((res) => res.data)
     .then((data) => data.data)
 }
+
+export const editViaje = (viaje) => {
+  return axios.patch(`${GET_ALL_VIAJES}/${viaje.id}`, viaje)
+}

@@ -2,7 +2,7 @@ import React from 'react'
 import { useVehiculos } from '../../hooks/useVehiculos'
 import { useSortedEntity } from '../../hooks/useSortedEntity'
 
-function Vehiculos () {
+function Vehiculos ({ setEditMode, setEditData }) {
   const { vehiculos, deleteVehiculo } = useVehiculos()
   const { sortedEntity, handleSort, getSortIndicator } = useSortedEntity(vehiculos)
 
@@ -17,7 +17,9 @@ function Vehiculos () {
   }
 
   const handleEdit = (placa) => {
-
+    const newEditData = vehiculos.find((vehiculo) => vehiculo.placa === placa)
+    setEditData(newEditData)
+    setEditMode(true)
   }
 
   return (

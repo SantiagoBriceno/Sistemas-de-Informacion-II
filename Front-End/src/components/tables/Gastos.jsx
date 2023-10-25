@@ -2,7 +2,7 @@ import React from 'react'
 import { useSortedEntity } from '../../hooks/useSortedEntity'
 import { useGastos } from '../../hooks/useGastos'
 
-function Gastos () {
+function Gastos ({ setEditMode, setEditData }) {
   const { gastos, deleteGasto } = useGastos()
   const { sortedEntity, handleSort, getSortIndicator } = useSortedEntity(gastos)
 
@@ -10,6 +10,12 @@ function Gastos () {
 
   const handleDelete = (gasto) => {
     deleteGasto(gasto.id)
+  }
+
+  const handleEdit = (id) => {
+    const newEditData = gastos.find((gasto) => gasto.id === id)
+    setEditData(newEditData)
+    setEditMode(true)
   }
   return (
     <div className='bg-gray-50 p-4 ml-72'>
@@ -66,7 +72,7 @@ function Gastos () {
                 >
                   Eliminar
                 </button>
-                <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
+                <button onClick={() => handleEdit(gasto.id)} className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
                   Editar
                 </button>
               </td>

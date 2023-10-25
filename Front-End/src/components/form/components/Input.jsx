@@ -22,8 +22,8 @@ const Input = ({ label, type, name, error, value, onChange, onBlur, id, options 
             onBlur={onBlur}
           >
           {options.map((option) => <option key={option} value={option}>{option}</option>)}
-          <option selected disabled>{name}</option>
-          </select>}
+          <option defaultValue={name} disabled>{name}</option>
+        </select>}
 
       {error !== '' ? <p className='text-red-500 text-xs italic'>{error}</p> : null}
     </div>

@@ -46,7 +46,7 @@ function MainCard () {
         <div className='sub-container rounded overflow-hidden shadow-lg p-4 bg-gray-100'>
 
           <div className='table-container'>
-            <img class='w-full pb-5' src={viajesRealizados} alt='Sunset in the mountains' style={{ borderRadius: 0 }} />
+            <img className='w-full pb-5' src={viajesRealizados} alt='Sunset in the mountains' style={{ borderRadius: 0 }} />
             <h2 className='text-2xl font-bold mb-4 text-center'>Ultimos viajes</h2>
             <table className='table-auto w-full'>
               <thead>
@@ -116,7 +116,7 @@ function MainCard () {
         </div>
         <div className='sub-container rounded overflow-hidden shadow-lg p-4 bg-gray-100'>
           <div className='table-container'>
-            <img class='w-full pb-5' src={conductoresVehiculo} alt='Sunset in the mountains' style={{ borderRadius: 0 }} />
+            <img className='w-full pb-5' src={conductoresVehiculo} alt='Sunset in the mountains' style={{ borderRadius: 0 }} />
             <h2 className='text-2xl font-bold mb-4 text-center'>Vehiculos con conductor asignado</h2>
             <table className='table-auto w-full'>
               <thead>

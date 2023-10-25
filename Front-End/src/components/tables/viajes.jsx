@@ -2,7 +2,7 @@ import React from 'react'
 import { useSortedEntity } from '../../hooks/useSortedEntity'
 import { useViajes } from '../../hooks/useViajes'
 
-function Viajes () {
+function Viajes ({ setEditMode, setEditData }) {
   const { viajes, deleteViaje } = useViajes()
   const { sortedEntity, handleSort, getSortIndicator } = useSortedEntity(viajes)
 
@@ -12,11 +12,17 @@ function Viajes () {
     deleteViaje(viaje.id)
   }
 
+  const handleEdit = (id) => {
+    const newEditData = viajes.find((viajes) => viajes.id === id)
+    setEditData(newEditData)
+    setEditMode(true)
+  }
+
   return (
     <div className='bg-gray-50 p-4 ml-72'>
       <h1 className='text-2xl font-bold mb-4'>Viajes</h1>
       <table className='table-auto w-full'>
-        <thead></thead>
+        <thead>
           <tr>
             <th
               className='px-4 py-2 text-center cursor-pointer'
@@ -85,7 +91,7 @@ function Viajes () {
                 >
                   Eliminar
                 </button>
-                <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
+                <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => handleEdit(viaje.id)}>
                   Editar
                 </button>
               </td>

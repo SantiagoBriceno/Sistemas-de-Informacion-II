@@ -1,9 +1,9 @@
 import { useState, useMemo } from 'react'
 import { placaValidation, valorNumericoValidation, cedulaValidation, stringValidation } from '../utils/validationField.js'
-import { createVehiculo } from '../../service/Vehiculos.js'
+import { createVehiculo, editVehiculo } from '../../service/Vehiculos.js'
 import { getCedulas } from '../../service/Conductores.js'
 
-export const useSearchVehiculos = () => {
+export const useSearchVehiculos = (editMode) => {
   const [cedula, setCedula] = useState([])
   const [formData, setFormField] = useState({
     placa: '',
@@ -88,7 +88,8 @@ export const useSearchVehiculos = () => {
   }, [])
 
   const handleSubmit = () => {
-    createVehiculo(formData)
+    !editMode ? createVehiculo(formData) : editVehiculo(formData.placa, formData)
+    window.location.reload()
   }
 
   return {

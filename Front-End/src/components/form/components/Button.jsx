@@ -1,11 +1,9 @@
 import React from 'react'
 import './css/button.css'
 
-const Button = ({ onSubmit, editMode }) => {
+const Button = ({ onSubmit, text }) => {
   return (
-    editMode
-      ? <button className='button-56' onClick={onSubmit}>Guardar Los cambios</button>
-      : <button className='button-56' onClick={onSubmit}>Enviar</button>
+    <button className='button-56' onClick={onSubmit}>{text}</button>
   )
 }
 
