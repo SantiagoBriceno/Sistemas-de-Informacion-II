@@ -4,6 +4,7 @@ const GET_ALL_GASTOS = 'http://localhost:3000/api/gastos'
 const GET_ALL_VIAJES = 'http://localhost:3000/api/viajes'
 const GET_ALL_VEHICULOS_PLACAS = 'http://localhost:3000/api/vehiculos/id/placas'
 const GET_ALL_CEDULAS = 'http://localhost:3000/api/conductores/id/cedulas'
+const GET_REPORT = 'http://localhost:3000/api/balance'
 
 export {
   GET_ALL_CONDUCTORES,
@@ -11,5 +12,6 @@ export {
   GET_ALL_GASTOS,
   GET_ALL_VIAJES,
   GET_ALL_VEHICULOS_PLACAS,
-  GET_ALL_CEDULAS
+  GET_ALL_CEDULAS,
+  GET_REPORT
 }

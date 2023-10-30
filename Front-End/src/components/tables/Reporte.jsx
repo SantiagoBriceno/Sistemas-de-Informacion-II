@@ -1,9 +1,8 @@
-function Reporte () {
-  const handleDelete = (reporte) => {}
-
-  const handleEdit = (reporte) => {}
+import { useReporte } from '../../hooks/useReporte.js'
+function Reporte ({ placa, visualizar }) {
+  const { reportData } = useReporte(placa, visualizar)
   return (
-    <div className='bg-gray-50 p-4 ml-72'>
+    <div className='bg-gray-50 p-4 flex flex-col justify-center content-center items-center'>
       <h1 className='text-2xl font-bold mb-4'>Reportes</h1>
       <table className='table-auto w-full'>
         <thead>
@@ -26,25 +25,23 @@ function Reporte () {
           </tr>
         </thead>
         <tbody>
-          {reporte.map((reporte) => (
-            <tr key={reporte.placa} className='hover:bg-gray-200'>
-              <td className='border px-4 py-2 text-center'>
-                {reporte.placa}
-              </td>
-              <td className='border px-4 py-2 text-center'>
-                {reporte.marca}
-              </td>
-              <td className='border px-4 py-2 text-center'>
-                {reporte.modelo}
-              </td>
-              <td className='border px-4 py-2 text-center'>
-                {reporte.ingresos} Bs
-              </td>
-              <td className='border px-4 py-2 text-center'>
-                {reporte.gastos} Bs
-              </td>
-            </tr>
-          ))}
+          <tr key={reportData.placa} className='hover:bg-gray-200'>
+            <td className='border px-4 py-2 text-center'>
+              {reportData.placa}
+            </td>
+            <td className='border px-4 py-2 text-center'>
+              {reportData.marca}
+            </td>
+            <td className='border px-4 py-2 text-center'>
+              {reportData.modelo}
+            </td>
+            <td className='border px-4 py-2 text-center'>
+              {reportData.ingresos} Bs
+            </td>
+            <td className='border px-4 py-2 text-center'>
+              {reportData.gastos} Bs
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
