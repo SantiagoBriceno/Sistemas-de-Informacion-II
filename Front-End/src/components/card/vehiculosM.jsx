@@ -23,6 +23,14 @@ function MainCard () {
           ...viaje,
           fechaInicio: formatDate(viaje.fechaInicio)
         }))
+
+        viajes.sort((a, b) => {
+          const dateA = new Date(a.fechaInicio)
+          const dateB = new Date(b.fechaInicio)
+
+          return dateB - dateA
+        }
+        )
         setViajes(viajes)
       })
       .catch((err) => {
@@ -93,7 +101,7 @@ function MainCard () {
                       {viaje.ubicacion}
                     </td>
                     <td className='border px-4 py-2 text-center'>
-                      {viaje.distancia}
+                      {viaje.distancia} km
                     </td>
                     <td className='border px-4 py-2 text-center'>
                       {viaje.fechaInicio}

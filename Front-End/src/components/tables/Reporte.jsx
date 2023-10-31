@@ -36,10 +36,10 @@ function Reporte ({ placa, visualizar }) {
               {reportData.modelo}
             </td>
             <td className='border px-4 py-2 text-center'>
-              {reportData.ingresos} Bs
+              {reportData.ingresos} $
             </td>
             <td className='border px-4 py-2 text-center'>
-              {reportData.gastos} Bs
+              {reportData.gastos} $
             </td>
           </tr>
         </tbody>

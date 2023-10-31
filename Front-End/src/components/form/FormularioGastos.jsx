@@ -66,7 +66,7 @@ const FormularioGasto = ({ editMode, editData }) => {
         <Input
           id='costo'
           label='Costo'
-          name='1.540 BsS'
+          name='1.540 $'
           type='number'
           error={error.costo}
           value={formData.costo}

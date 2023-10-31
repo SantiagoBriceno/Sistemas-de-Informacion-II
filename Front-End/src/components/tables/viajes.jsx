@@ -79,10 +79,10 @@ function Viajes ({ setEditMode, setEditData }) {
                 {viaje.ubicacion}
               </td>
               <td className='border px-4 py-2 text-center'>
-                {viaje.distancia}
+                {viaje.distancia} km
               </td>
               <td className='border px-4 py-2 text-center'>
-                {viaje.costo}
+                {viaje.costo} $
               </td>
               <td className='border px-4 py-2 text-center'>
                 <button

@@ -63,7 +63,7 @@ function Gastos ({ setEditMode, setEditData }) {
                 {gasto.descripcion}
               </td>
               <td className='border px-4 py-2 text-center'>
-                {gasto.costo}
+                {gasto.costo} $
               </td>
               <td className='border px-4 py-2 text-center'>
                 <button

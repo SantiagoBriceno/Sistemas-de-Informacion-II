@@ -71,7 +71,7 @@ const FormularioViajes = ({ editMode, setEditMode, editData }) => {
         <Input
           id='costo'
           label='Costo del formData'
-          name='1.540 BsS'
+          name='1.540 $'
           type='number'
           error={error.costo}
           value={formData.costo}

@@ -57,7 +57,7 @@ function Conductores ({ setEditMode, setEditData }) {
               className='px-4 py-2 text-center cursor-pointer'
               onClick={() => handleSort('ganancia')}
             >
-              Bs/Semanal {getSortIndicator('ganancia')}
+              $/Mensual {getSortIndicator('ganancia')}
             </th>
             <th
               className='px-4 py-2 text-center cursor-pointer'
@@ -91,7 +91,7 @@ function Conductores ({ setEditMode, setEditData }) {
                 {conductor.disponibilidad ? 'Disponible' : 'No disponible'}
               </td>
               <td className='border px-4 py-2 text-center'>
-                {conductor.ganancia} Bs
+                {conductor.ganancia} $
               </td>
               <td className='border px-4 py-2 text-center'>
                 {conductor.viajesRealizados}
